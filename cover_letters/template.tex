@@ -1,0 +1,50 @@
+% Cover letter template — compile with: xelatex template.tex
+% Target: exactly 1 page with a visible signature line.
+% /apply copies this to cover_letter.tex and fills it.
+% Style rules: no em-dashes, no cliches (see 03-writing-style.md).
+
+\documentclass[11pt,letterpaper]{letter}
+\usepackage{fontspec}              % xelatex font handling
+\usepackage[margin=1in]{geometry}
+\usepackage{needspace}
+\setmainfont{Latin Modern Roman}   % swap for a font you have installed
+\pagestyle{empty}
+\linespread{1.05}
+
+\begin{document}
+
+\begin{flushleft}
+First Last\\
+City, ST\\
+you@example.com $\cdot$ +1 (000) 000 0000
+\end{flushleft}
+
+\vspace{1.5em}
+\today
+
+\vspace{1.5em}
+Dear [Company] Hiring Team,
+
+\vspace{1em}
+% Hook: one specific, researched detail about the company/role.
+Opening paragraph that proves you researched the company and states the role
+you are applying for.
+
+\vspace{0.8em}
+% Fit: connect 2-3 concrete, quantified experiences to stated requirements.
+Middle paragraph linking your experience to what the posting asks for, using the
+posting's keywords where they truthfully apply.
+
+\vspace{0.8em}
+% Why them / why now (optional, genuine motivation).
+Short paragraph on why this company and this moment.
+
+\vspace{0.8em}
+% Close: clear, low-pressure call to action.
+Closing paragraph with thanks and a simple next step.
+
+\vspace{1.5em}
+Sincerely,\\[2em]
+First Last
+
+\end{document}

@@ -1,0 +1,32 @@
+# Secrets / env
+.env
+.env.local
+
+# Adzuna search cache
+job_scraper/*.json
+!job_scraper/.gitkeep
+
+# Generated application artifacts
+resume/*.pdf
+resume/*.aux
+resume/*.log
+resume/*.out
+cover_letters/*.pdf
+cover_letters/*.aux
+cover_letters/*.log
+cover_letters/*.out
+
+# Personal source documents (keep private)
+documents/*
+!documents/README.md
+
+# Generated upskill reports
+upskill/*.md
+!upskill/.gitkeep
+
+# Node / Bun
+node_modules/
+bun.lockb
+
+# OS
+.DS_Store

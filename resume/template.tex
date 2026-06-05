@@ -1,0 +1,54 @@
+% US/ATS resume template — compile with: lualatex template.tex
+% Target: exactly 1 page. No photo, no DOB (US convention).
+% /apply copies this to resume.tex and fills it from 01-candidate-profile.md.
+
+\documentclass[11pt,letterpaper,sans]{moderncv}
+\moderncvstyle{banking}   % clean, ATS-friendly; alternatives: classic, casual
+\moderncvcolor{black}     % keep it conservative for ATS
+
+\usepackage[scale=0.88]{geometry}
+\usepackage{needspace}    % \needspace{} to prevent bad page breaks
+\setlength{\hintscolumnwidth}{2.6cm}
+
+% ---- Personal data (no photo / no DOB on purpose) ----
+\name{First}{Last}
+\title{Target Role}
+\phone[mobile]{+1~(000)~000~0000}
+\email{you@example.com}
+\social[linkedin]{your-linkedin}
+\social[github]{your-github}
+\address{City, ST}{}{}
+
+\begin{document}
+\makecvtitle
+\vspace*{-6mm}
+
+% ---- Summary (optional; cut if space is tight) ----
+\section{Summary}
+\cvitem{}{One or two lines: who you are, your strongest relevant skills, and the
+value you bring to the target role. Cut this section first if over 1 page.}
+
+% ---- Experience ----
+\section{Experience}
+\cventry{20XX--Present}{Job Title}{Company}{City, ST}{}{
+\begin{itemize}
+  \item Action verb + what you did + quantified result (\%, \$, scale, time).
+  \item Second achievement, tailored to the target posting's keywords.
+\end{itemize}}
+
+\cventry{20XX--20XX}{Job Title}{Company}{City, ST}{}{
+\begin{itemize}
+  \item Achievement bullet.
+  \item Achievement bullet.
+\end{itemize}}
+
+% ---- Skills ----
+\section{Skills}
+\cvitem{Core}{Skill, Skill, Skill}
+\cvitem{Tools}{Tool, Framework, Platform}
+
+% ---- Education ----
+\section{Education}
+\cventry{20XX}{Degree, Field}{School}{City, ST}{}{}
+
+\end{document}

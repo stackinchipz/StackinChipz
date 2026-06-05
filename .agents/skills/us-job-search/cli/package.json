@@ -1,0 +1,14 @@
+{
+  "name": "us-job-search",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Adzuna-backed US job search CLI for the StackinChipz job application framework",
+  "type": "module",
+  "scripts": {
+    "search": "bun run search.ts",
+    "detail": "bun run detail.ts"
+  },
+  "engines": {
+    "bun": ">=1.0.0"
+  }
+}
