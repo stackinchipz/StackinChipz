@@ -1,0 +1,10 @@
+{
+  "_comment": "Copy to companies.json and edit. 'token' is the board slug from the company's careers URL (boards.greenhouse.io/<token> or jobs.lever.co/<token>). 'name' is a display label.",
+  "greenhouse": [
+    { "token": "stripe", "name": "Stripe" },
+    { "token": "airbnb", "name": "Airbnb" }
+  ],
+  "lever": [
+    { "token": "netflix", "name": "Netflix" }
+  ]
+}

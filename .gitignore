@@ -2,9 +2,12 @@
 .env
 .env.local
 
-# Adzuna search cache
+# Search caches
 job_scraper/*.json
 !job_scraper/.gitkeep
+
+# Personal ATS target list (keep the example, ignore the real one)
+.agents/skills/ats-search/companies.json
 
 # Generated application artifacts
 resume/*.pdf

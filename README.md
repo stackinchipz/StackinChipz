@@ -50,6 +50,7 @@ LinkedIn has no open jobs API and forbids bulk scraping, so this framework:
   job-application-assistant/       # Core engine: profile + evaluation + templates
   upskill/                         # Skill-gap analysis
 .agents/skills/us-job-search/      # Adzuna-backed US job search CLI (Bun)
+.agents/skills/ats-search/         # Greenhouse/Lever ATS feeds (no keys, full JD)
 resume/                            # LaTeX resume template (US/ATS, 1 page)
 cover_letters/                     # LaTeX cover letter template (1 page)
 documents/                         # Drop your source CV/portfolio/refs here
