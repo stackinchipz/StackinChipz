@@ -30,6 +30,13 @@ Steps:
    These come straight from Greenhouse/Lever with **full descriptions** (no
    follow-up fetch needed) and need no API keys.
 
+   **(Optional) LinkedIn coverage** via Google Jobs (SerpApi), if `SERPAPI_KEY`
+   is set:
+   ```bash
+   cd .agents/skills/linkedin-search/cli
+   bun run search.ts "<query>" --location "<City, ST>" --linkedin-only
+   ```
+
 4. Merge results across queries and both sources; **deduplicate** by `id` and by
    `(title, company)`.
 

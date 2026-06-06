@@ -19,6 +19,8 @@ ATS-friendly templates.
 | `/apply <url-or-paste>` | Evaluates fit, tailors a resume + cover letter, runs a drafter→reviewer critique loop, compiles PDFs, and verifies layout. Works on a single **LinkedIn** job URL. |
 | `/expand` | Enriches your profile by scanning GitHub, portfolios, and course history. |
 | `/upskill` | Analyzes skill gaps vs. target jobs and builds a learning plan. |
+| `/track` | Logs and reviews your applications (status board). |
+| `/reachout` | Drafts outreach: recruiter, hiring-manager, referral, follow-up. |
 | `/reset` | Clears generated profile/search state to start fresh. |
 
 ## The LinkedIn approach
@@ -30,6 +32,8 @@ LinkedIn has no open jobs API and forbids bulk scraping, so this framework:
 - **Applies** to any specific **LinkedIn** posting one at a time: paste the job
   URL into `/apply` and Claude fetches the public posting (or paste the JD text
   directly). No LinkedIn scraping, no account risk.
+- **Optionally** surfaces LinkedIn-sourced listings in bulk via **Google Jobs
+  (SerpApi)** — a ToS-safe way to get LinkedIn coverage without scraping it.
 
 ## Quick start
 
@@ -51,6 +55,9 @@ LinkedIn has no open jobs API and forbids bulk scraping, so this framework:
   upskill/                         # Skill-gap analysis
 .agents/skills/us-job-search/      # Adzuna-backed US job search CLI (Bun)
 .agents/skills/ats-search/         # Greenhouse/Lever ATS feeds (no keys, full JD)
+.agents/skills/linkedin-search/    # LinkedIn via Google Jobs (SerpApi)
+tools/tracker.ts                   # Application tracker CLI
+applications/                      # Your application status board (git-ignored)
 resume/                            # LaTeX resume template (US/ATS, 1 page)
 cover_letters/                     # LaTeX cover letter template (1 page)
 documents/                         # Drop your source CV/portfolio/refs here

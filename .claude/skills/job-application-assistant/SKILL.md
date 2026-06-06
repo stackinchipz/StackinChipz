@@ -24,6 +24,7 @@ rules (evaluate fit first, verification is mandatory, US conventions).
 | `05-resume-templates.md` | How to tailor the LaTeX resume. |
 | `06-cover-letter-templates.md` | How to write the cover letter. |
 | `07-interview-prep.md` | Interview preparation method. |
+| `08-outreach.md` | Networking/outreach message rules and templates. |
 
 ## Workflow
 
@@ -42,6 +43,10 @@ rules (evaluate fit first, verification is mandatory, US conventions).
    for the cover letter (1 page, visible signature). Visually inspect the PDF;
    never trust the `.tex` alone. On overflow, use relevance-weighted cutting.
 6. **Interview prep** (on request) — Use `07-interview-prep.md`.
+7. **Log the application** — Append it to the tracker (`/track` /
+   `tools/tracker.ts add`) with the fit score and source.
+8. **Outreach** (on request) — Draft networking messages via `/reachout` and
+   `08-outreach.md`.
 
 ## Granular triggers
 

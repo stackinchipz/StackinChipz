@@ -44,4 +44,11 @@ Steps:
    visible signature. On overflow, apply relevance-weighted cutting and
    `\needspace` / `\enlargethispage`, then recompile until correct.
 
-8. Summarize what was produced and flag anything the user should review.
+8. **Log it to the tracker:**
+   ```bash
+   bun run tools/tracker.ts add --company "<company>" --role "<role>" \
+     --url "<url>" --fit <score> --status applied --source <adzuna|ats|linkedin>
+   ```
+
+9. Summarize what was produced and flag anything the user should review. Offer
+   to draft outreach with `/reachout` (recruiter / hiring-manager / referral).

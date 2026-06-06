@@ -9,6 +9,11 @@ job_scraper/*.json
 # Personal ATS target list (keep the example, ignore the real one)
 .agents/skills/ats-search/companies.json
 
+# Application tracker (personal data)
+applications/*.json
+applications/*.csv
+!applications/README.md
+
 # Generated application artifacts
 resume/*.pdf
 resume/*.aux

@@ -33,6 +33,28 @@ export ADZUNA_APP_KEY=your_app_key
 The free tier is sufficient for personal job searching (rate-limited; the CLI
 caches results to avoid redundant calls).
 
+### Optional: LinkedIn coverage (SerpApi)
+
+To surface LinkedIn-sourced listings in bulk via Google Jobs, get a **SerpApi**
+key (paid; free trial) at <https://serpapi.com/> and export it:
+
+```bash
+export SERPAPI_KEY=your_serpapi_key
+```
+
+This is optional. Without it, the Adzuna and Greenhouse/Lever sources still work,
+and you can always apply to a specific LinkedIn posting with `/apply <url>`.
+
+### Optional: target-company ATS list
+
+To pull jobs straight from companies' Greenhouse/Lever boards, copy the example
+and add your targets (no keys needed):
+
+```bash
+cp .agents/skills/ats-search/companies.example.json \
+   .agents/skills/ats-search/companies.json
+```
+
 ## 3. Install the search CLI
 
 ```bash

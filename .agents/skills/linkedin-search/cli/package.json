@@ -1,0 +1,13 @@
+{
+  "name": "linkedin-search",
+  "version": "0.1.0",
+  "private": true,
+  "description": "LinkedIn/Google Jobs search via SerpApi for the StackinChipz job application framework",
+  "type": "module",
+  "scripts": {
+    "search": "bun run search.ts"
+  },
+  "engines": {
+    "bun": ">=1.0.0"
+  }
+}
