@@ -18,9 +18,14 @@
   stress) + strategy A/B (Flow-only vs Convergence vs +Fundamental). ✅
 - **AGENT-001** Propose-only agent layer: sizes via the risk engine, emits trade
   proposals with thesis + invalidation, dry-run broker + MCP stub, audit log. ✅
+- **ALPHA-001** Expert signals: estimate revisions + insider (Form 4) + short-
+  interest/squeeze; blended into the Power Gauge Experts bucket + SQUEEZE screen. ✅
+- **UI-003** Screen dashboard (Streamlit) with book risk, per-screen tabs, and
+  propose-only agent cards over testable `reporting/` helpers. ✅
 
 See `docs/CAPITAL_COMPOUNDER_SCREEN.md`, `docs/RISK_ENGINE.md`,
-`docs/OPTIONS_BACKTEST.md`, `docs/AGENT_EXECUTION.md`.
+`docs/OPTIONS_BACKTEST.md`, `docs/AGENT_EXECUTION.md`, `docs/ALPHA_SIGNALS.md`,
+`docs/DASHBOARD.md`.
 
 ## P0 — Required Next
 

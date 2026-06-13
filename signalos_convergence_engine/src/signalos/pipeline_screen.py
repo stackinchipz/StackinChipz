@@ -21,6 +21,7 @@ from signalos.config import ScannerConfig, DEFAULT_CONFIG
 from signalos.pipeline import run_daily_scan
 from signalos.features.capital_efficiency import compute_capital_efficiency
 from signalos.features.iv_regime import compute_iv_regime
+from signalos.features.expert_signals import compute_expert_signals
 from signalos.scoring.capital_efficiency_score import add_capital_efficiency_scores
 from signalos.scoring.chaikin_power_gauge import add_power_gauge
 from signalos.scoring.convergence import compute_convergence_score
@@ -35,6 +36,7 @@ def run_full_screen(
     iv_history: pd.DataFrame | None = None,
     sector_map: pd.DataFrame | None = None,
     earnings: pd.DataFrame | None = None,
+    expert_inputs: pd.DataFrame | None = None,
     config: ScannerConfig = DEFAULT_CONFIG,
 ) -> pd.DataFrame:
     # 1. Options-flow convergence base.
@@ -63,6 +65,15 @@ def run_full_screen(
         base = base.merge(e[["ticker", "earnings_dte"]], on="ticker", how="left")
     else:
         base["earnings_dte"] = float("nan")
+
+    # 4b. Expert signals: estimate revisions, insider activity, squeeze fuel.
+    if expert_inputs is not None and not expert_inputs.empty:
+        exp = compute_expert_signals(expert_inputs)
+        if not exp.empty:
+            base = base.merge(exp, on="ticker", how="left")
+    for col in ["revision_score", "insider_score", "squeeze_score"]:
+        if col not in base.columns:
+            base[col] = float("nan")
 
     # 5. Chaikin Power Gauge (needs technical + fundamental columns now present).
     base["capital_efficiency_score"] = base["capital_efficiency_score"].fillna(50.0)

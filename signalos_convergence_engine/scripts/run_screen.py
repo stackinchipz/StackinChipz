@@ -29,6 +29,7 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from signalos.pipeline_screen import run_full_screen, size_screen
 from signalos.data_sources.fundamentals import load_fundamentals
+from signalos.data_sources.expert_data import load_expert_signals
 
 
 def main():
@@ -42,11 +43,15 @@ def main():
     p.add_argument("--edgar-ua", default=os.environ.get("EDGAR_USER_AGENT"))
     args = p.parse_args()
 
+    expert_inputs = None
     if args.demo:
         stock_path = ROOT / "data" / "demo" / "stock_daily.csv"
         option_path = ROOT / "data" / "demo" / "option_chain_latest.csv"
         provider = "csv"
         fund_csv = ROOT / "data" / "demo" / "fundamentals.csv"
+        expert_csv = ROOT / "data" / "demo" / "expert_inputs.csv"
+        if expert_csv.exists():
+            expert_inputs = load_expert_signals(provider="csv", csv_path=expert_csv)
     else:
         if not args.stock_daily or not args.option_chain:
             raise SystemExit("Provide --demo or both --stock-daily and --option-chain")
@@ -76,7 +81,7 @@ def main():
             sector_map["ticker"] = sector_map["ticker"].str.upper()
 
     signals = run_full_screen(stock_daily, option_chain, fundamentals=fundamentals,
-                              sector_map=sector_map)
+                              sector_map=sector_map, expert_inputs=expert_inputs)
     sized = size_screen(signals)
 
     out_dir = ROOT / "outputs"

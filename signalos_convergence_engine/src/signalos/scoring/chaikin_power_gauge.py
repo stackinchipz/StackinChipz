@@ -58,8 +58,19 @@ def experts_bucket(row: pd.Series) -> float:
     repeat = float(row.get("repeat_flow_score", 0.5) or 0.5)
     catalyst = float(row.get("catalyst_score", 50.0) or 50.0)
     catalyst = catalyst / 100.0 if catalyst > 1 else catalyst
-    s = ask * 45.0 + repeat * 30.0 + catalyst * 25.0
-    return float(np.clip(s, 0, 100))
+    flow = float(np.clip(ask * 45.0 + repeat * 30.0 + catalyst * 25.0, 0, 100))
+
+    # Blend in estimate-revision + insider signals when present. Absent ->
+    # fall back to flow-only so existing behavior is unchanged.
+    revision = row.get("revision_score")
+    insider = row.get("insider_score")
+    have_rev = revision is not None and not pd.isna(revision)
+    have_ins = insider is not None and not pd.isna(insider)
+    if not have_rev and not have_ins:
+        return flow
+    revision = flow if not have_rev else float(revision)
+    insider = flow if not have_ins else float(insider)
+    return float(np.clip(0.55 * flow + 0.27 * revision + 0.18 * insider, 0, 100))
 
 
 def power_gauge_score(row: pd.Series, config: ScannerConfig = DEFAULT_CONFIG) -> float:

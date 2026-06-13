@@ -58,6 +58,11 @@ def classify_screen(row: pd.Series, config: ScannerConfig = DEFAULT_CONFIG) -> s
             and verdict == "Capital Destroyer" and uoa >= config.min_uoa_score):
         return "DESTROYER_BREAKDOWN"
 
+    squeeze = float(row.get("squeeze_score", 0) or 0)
+    if (bias == "Bullish" and squeeze >= 60 and uoa >= config.min_uoa_score
+            and mf >= 50 and not rating.startswith("Bearish")):
+        return "SQUEEZE"
+
     if iv_regime in {"High", "Extreme"} and uoa >= config.min_uoa_score and mf >= 50:
         return "PREMIUM_REVERSION"
 
