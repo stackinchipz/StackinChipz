@@ -14,8 +14,11 @@
   kill-switch (`risk/position_sizing.py`). ✅
 - **SCREEN-001** Special options screens + regime-aware trade suggestions. ✅
 - **PIPE-001** `run_full_screen` merges all layers; `run_screen.py` runner. ✅
+- **BT-002** Options P&L backtest (BS repricing along the realized path, IV-shock
+  stress) + strategy A/B (Flow-only vs Convergence vs +Fundamental). ✅
 
-See `docs/CAPITAL_COMPOUNDER_SCREEN.md` and `docs/RISK_ENGINE.md`.
+See `docs/CAPITAL_COMPOUNDER_SCREEN.md`, `docs/RISK_ENGINE.md`,
+`docs/OPTIONS_BACKTEST.md`.
 
 ## P0 — Required Next
 
