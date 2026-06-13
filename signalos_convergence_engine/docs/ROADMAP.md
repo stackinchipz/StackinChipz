@@ -35,10 +35,17 @@ sized, structured system.
 
 Docs: `docs/CAPITAL_COMPOUNDER_SCREEN.md`, `docs/RISK_ENGINE.md`.
 
+Also shipped:
+- Options P&L backtest (BS repricing + IV-shock stress) + strategy A/B
+- Propose-only agent layer (sizing + thesis/invalidation + dry-run broker +
+  audit log; two-barrier guard before any live order) — `docs/AGENT_EXECUTION.md`
+
 ### Next within v0.2
 - True 52-week IV rank from a persisted IV history store
 - Point-in-time fundamentals (EDGAR filing dates) for the backtest
 - Estimate-revision + insider (Form 4) signals
+- Local MCP broker implementation (Robinhood/Tradier) behind the agent
+- Streamlit dashboard for the screen + book risk
 
 ## v0.3 — Real Data Integration (price/options)
 

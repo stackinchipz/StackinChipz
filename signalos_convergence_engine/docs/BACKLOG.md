@@ -16,9 +16,11 @@
 - **PIPE-001** `run_full_screen` merges all layers; `run_screen.py` runner. ✅
 - **BT-002** Options P&L backtest (BS repricing along the realized path, IV-shock
   stress) + strategy A/B (Flow-only vs Convergence vs +Fundamental). ✅
+- **AGENT-001** Propose-only agent layer: sizes via the risk engine, emits trade
+  proposals with thesis + invalidation, dry-run broker + MCP stub, audit log. ✅
 
 See `docs/CAPITAL_COMPOUNDER_SCREEN.md`, `docs/RISK_ENGINE.md`,
-`docs/OPTIONS_BACKTEST.md`.
+`docs/OPTIONS_BACKTEST.md`, `docs/AGENT_EXECUTION.md`.
 
 ## P0 — Required Next
 
