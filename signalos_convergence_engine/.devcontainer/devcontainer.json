@@ -1,0 +1,23 @@
+{
+  "name": "SignalOS",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+  "postCreateCommand": "pip install -r requirements.txt && python scripts/make_demo_data.py && python scripts/run_daily_scan.py --demo",
+  "forwardPorts": [8501],
+  "portsAttributes": {
+    "8501": {
+      "label": "SignalOS Streamlit",
+      "onAutoForward": "openBrowser"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python"
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-toolsai.jupyter"
+      ]
+    }
+  }
+}
