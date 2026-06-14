@@ -27,12 +27,20 @@ machine you control, or use Robinhood's own in-app agent connection.
       the exact URL from the app — do not hard-code a guessed endpoint.
 
 ### 2. Connect the MCP locally
-Add the Robinhood MCP server to local Claude Code (confirm transport/URL from
-Robinhood's connect screen):
+Add the Robinhood MCP server to local Claude Code. These are Robinhood's
+official instructions (Agentic Trading overview), verified 2026-06:
 ```bash
-claude mcp add --transport http robinhood <ROBINHOOD_MCP_URL>
-# complete the OAuth handshake when prompted
+claude mcp add robinhood-trading --transport http https://agent.robinhood.com/mcp/trading
 ```
+Then in Claude Code: enter `/mcp`, select **robinhood-trading**, and authenticate
+(OAuth). Server name is `robinhood-trading`; transport is Streamable HTTP.
+
+Other runtimes (same MCP link `https://agent.robinhood.com/mcp/trading`):
+- **Claude Desktop:** Settings → Connectors → Add custom connector → paste link.
+- **Codex CLI:** `codex mcp add robinhood-trading --url https://agent.robinhood.com/mcp/trading`, then `/mcp` → select.
+- **Cursor:** Settings → Tools & MCPs → Connect, give it the link.
+- **ChatGPT / Grok / others:** add the same MCP link as a custom connector.
+
 Keep the token in your OS keychain / local env — never commit it.
 
 ### 3. Insert SignalOS guardrails (mandatory)
