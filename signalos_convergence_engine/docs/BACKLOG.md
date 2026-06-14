@@ -22,6 +22,9 @@
   interest/squeeze; blended into the Power Gauge Experts bucket + SQUEEZE screen. ✅
 - **UI-003** Screen dashboard (Streamlit) with book risk, per-screen tabs, and
   propose-only agent cards over testable `reporting/` helpers. ✅
+- **EXEC-001** Robinhood execution: Model A runbook (local Claude Code + RH MCP,
+  human-approved) + Model B `RobinhoodMCPBroker` scaffold (defined-risk order
+  specs, two-barrier safety, injected mcp_invoker). `docs/EXECUTION_RUNBOOK.md`. ✅
 
 See `docs/CAPITAL_COMPOUNDER_SCREEN.md`, `docs/RISK_ENGINE.md`,
 `docs/OPTIONS_BACKTEST.md`, `docs/AGENT_EXECUTION.md`, `docs/ALPHA_SIGNALS.md`,

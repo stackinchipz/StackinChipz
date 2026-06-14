@@ -26,6 +26,10 @@ class TradeProposal:
     power_gauge_rating: str
     capital_verdict: str
     iv_regime: str
+    # contract identity (for order construction)
+    strike: float | None
+    expiration: str | None
+    option_symbol: str | None
     # narrative
     thesis: str
     invalidation: str
@@ -106,6 +110,9 @@ def build_proposals(sized: pd.DataFrame, config: ScannerConfig = DEFAULT_CONFIG)
             power_gauge_rating=str(row.get("power_gauge_rating", "Neutral")),
             capital_verdict=str(row.get("capital_verdict", "Unknown")),
             iv_regime=str(row.get("iv_regime", "Unknown")),
+            strike=(float(row["strike"]) if pd.notna(row.get("strike")) else None),
+            expiration=(str(row.get("expiration")) if pd.notna(row.get("expiration")) else None),
+            option_symbol=(str(row.get("option_symbol")) if pd.notna(row.get("option_symbol")) else None),
             thesis=_thesis(row),
             invalidation=_invalidation(row, config),
             entry_note=str(row.get("screen_entry_note", "")),
