@@ -210,6 +210,44 @@ taxes?"*.
 
 ---
 
+## Calculator (`calc`)
+
+Standalone CRE / financial calculators built on the same money-safe engine
+(`decimal.js`) as the full analysis — for quick back-of-envelope math without
+running a whole Lease vs. Buy model.
+
+```bash
+cre-analyzer calc mortgage  --principal 2000000 --rate 0.065 --amort 25 [--term 10] [--schedule]
+cre-analyzer calc caprate   --noi 210000 --price 3000000
+cre-analyzer calc value     --noi 210000 --caprate 0.07
+cre-analyzer calc noi       --gpi 300000 --vacancy 0.05 --other 0 --opex 90000
+cre-analyzer calc coc       --cashflow 45000 --equity 600000
+cre-analyzer calc dscr      --noi 200000 --debt 150000
+cre-analyzer calc grm       --price 3000000 --gross 300000
+cre-analyzer calc breakeven --opex 90000 --debt 150000 --gpi 300000
+cre-analyzer calc maxloan   --noi 200000 --dscr 1.25 --rate 0.065 --amort 25
+cre-analyzer calc npv       --rate 0.08 --flows "-500000,60000,60000,660000"
+cre-analyzer calc irr       --flows "-500000,60000,60000,660000"
+```
+
+| Subcommand  | Computes |
+| ----------- | -------- |
+| `mortgage`  | Annual/monthly payment, total interest, amortization schedule |
+| `caprate`   | Cap rate = NOI / value |
+| `value`     | Value = NOI / cap rate |
+| `noi`       | NOI from gross income, vacancy, other income, OpEx |
+| `coc`       | Cash-on-cash = annual cash flow / equity |
+| `dscr`      | Debt-service coverage ratio = NOI / debt service |
+| `grm`       | Gross rent multiplier = price / gross income |
+| `breakeven` | Break-even occupancy = (OpEx + debt service) / gross income |
+| `maxloan`   | Max supportable loan from NOI + required DSCR |
+| `npv`       | Net present value of a cash-flow vector |
+| `irr`       | Internal rate of return of a cash-flow vector |
+
+Run `cre-analyzer calc --help` (or `calc <subcommand> --help`) for full flags.
+
+---
+
 ## Output metrics
 
 | Metric                     | Meaning                                                              |

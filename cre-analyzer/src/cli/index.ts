@@ -11,6 +11,7 @@ import { createProvider } from '../providers';
 import { ConsoleReporter } from '../reporters/ConsoleReporter';
 import { JsonReporter } from '../reporters/JsonReporter';
 import { HtmlReporter } from '../reporters/HtmlReporter';
+import { registerCalcCommands } from './calc';
 
 const program = new Command();
 
@@ -18,6 +19,8 @@ program
   .name('cre-analyzer')
   .description('Commercial Real Estate Lease vs. Buy analysis with property-tax normalization')
   .version('1.0.0');
+
+registerCalcCommands(program);
 
 program
   .command('analyze')
