@@ -25,7 +25,7 @@ import pandas as pd
 
 
 FUNDAMENTAL_COLUMNS = [
-    "ticker", "fiscal_year", "period_end",
+    "ticker", "fiscal_year", "period_end", "filing_date",
     "revenue", "operating_income", "net_income",
     "total_assets", "total_equity", "total_debt", "cash",
     "capex", "depreciation_amortization", "rd_expense",
@@ -43,12 +43,27 @@ def validate_fundamentals(df: pd.DataFrame) -> pd.DataFrame:
     for col in FUNDAMENTAL_COLUMNS:
         if col not in out.columns:
             out[col] = np.nan
-    numeric = [c for c in FUNDAMENTAL_COLUMNS if c not in {"ticker", "period_end"}]
+    numeric = [c for c in FUNDAMENTAL_COLUMNS if c not in {"ticker", "period_end", "filing_date"}]
     for c in numeric:
         out[c] = pd.to_numeric(out[c], errors="coerce")
     out["ticker"] = out["ticker"].astype(str).str.upper()
     out = out.sort_values(["ticker", "fiscal_year"]).reset_index(drop=True)
     return out[FUNDAMENTAL_COLUMNS]
+
+
+def as_of(fundamentals: pd.DataFrame, asof_date) -> pd.DataFrame:
+    """Point-in-time filter: keep only rows whose filing_date <= asof_date.
+
+    Prevents look-ahead in historical screens/backtests — a fiscal year's data
+    is only usable once it was actually filed. Rows with an unknown filing_date
+    (NaT) are kept (conservative fallback for providers without filing dates).
+    """
+    if fundamentals is None or fundamentals.empty or asof_date is None:
+        return fundamentals
+    df = fundamentals.copy()
+    asof = pd.to_datetime(asof_date)
+    fd = pd.to_datetime(df.get("filing_date"), errors="coerce")
+    return df[fd.isna() | (fd <= asof)].reset_index(drop=True)
 
 
 def load_fundamentals(
@@ -157,6 +172,9 @@ def make_demo_fundamentals(years: int = 6, seed: int = 17) -> pd.DataFrame:
                 "ticker": ticker,
                 "fiscal_year": fy,
                 "period_end": f"{fy}-12-31",
+                # 10-K typically filed ~2 months after fiscal year-end; this is
+                # the date the data actually became public (point-in-time).
+                "filing_date": f"{fy + 1}-03-01",
                 "revenue": round(revenue, 0),
                 "operating_income": round(operating_income, 0),
                 "net_income": round(net_income, 0),

@@ -7,3 +7,5 @@ outputs/*.csv
 !outputs/.gitkeep
 data/demo/*.csv
 !data/demo/.gitkeep
+data/live/*.csv
+!data/live/.gitkeep

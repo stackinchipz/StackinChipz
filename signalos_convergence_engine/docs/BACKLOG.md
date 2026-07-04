@@ -25,6 +25,10 @@
 - **EXEC-001** Robinhood execution: Model A runbook (local Claude Code + RH MCP,
   human-approved) + Model B `RobinhoodMCPBroker` scaffold (defined-risk order
   specs, two-barrier safety, injected mcp_invoker). `docs/EXECUTION_RUNBOOK.md`. ✅
+- **CAP-003** Point-in-time fundamentals: `filing_date` in the contract + EDGAR
+  filed dates + `as_of()` filter + `compute_capital_efficiency(asof_date=...)`. ✅
+- **DATA-004** IV-history store (`iv_store.py` + `update_iv_history.py`): true
+  52-week IV rank instead of the cross-sectional fallback. ✅
 
 See `docs/CAPITAL_COMPOUNDER_SCREEN.md`, `docs/RISK_ENGINE.md`,
 `docs/OPTIONS_BACKTEST.md`, `docs/AGENT_EXECUTION.md`, `docs/ALPHA_SIGNALS.md`,

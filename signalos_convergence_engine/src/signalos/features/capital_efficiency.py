@@ -71,12 +71,22 @@ def _uniform_roa(g: pd.DataFrame, config: ScannerConfig) -> float:
 def compute_capital_efficiency(
     fundamentals: pd.DataFrame,
     config: ScannerConfig = DEFAULT_CONFIG,
+    asof_date=None,
 ) -> pd.DataFrame:
-    """Return one metrics row per ticker (latest fiscal year)."""
+    """Return one metrics row per ticker (latest fiscal year).
+
+    Pass `asof_date` to compute point-in-time (only filings public by that date),
+    which is required for a look-ahead-free historical backtest.
+    """
     if fundamentals is None or fundamentals.empty:
         return pd.DataFrame()
 
     df = fundamentals.copy()
+    if asof_date is not None:
+        from signalos.data_sources.fundamentals import as_of
+        df = as_of(df, asof_date)
+        if df.empty:
+            return pd.DataFrame()
     df = df.sort_values(["ticker", "fiscal_year"])
     tax = config.assumed_tax_rate
     cap_lb = config.roiic_lookback_years

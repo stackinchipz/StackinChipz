@@ -70,8 +70,13 @@ class EdgarProvider:
         data = self._get(SEC_TICKERS_URL)
         return {row["ticker"].upper(): int(row["cik_str"]) for row in data.values()}
 
-    def _annual_series(self, facts: dict, field: str) -> dict[int, float]:
-        """Return {fiscal_year: value} for the best-available concept of a field."""
+    def _annual_series(self, facts: dict, field: str,
+                       filed: dict[int, str] | None = None) -> dict[int, float]:
+        """Return {fiscal_year: value} for the best-available concept of a field.
+
+        If `filed` is provided, it is populated with {fiscal_year: filing_date}
+        (the point-in-time date the value became public).
+        """
         us_gaap = facts.get("facts", {}).get("us-gaap", {})
         for concept in CONCEPT_MAP[field]:
             node = us_gaap.get(concept)
@@ -88,13 +93,16 @@ class EdgarProvider:
                         continue
                     # Prefer the latest-filed value for a given fiscal year.
                     out[int(fy)] = float(val)
+                    if filed is not None and r.get("filed"):
+                        filed[int(fy)] = r["filed"]
             if out:
                 return out
         return {}
 
     def fetch_company(self, ticker: str, cik: int, years: int = 6) -> pd.DataFrame:
         facts = self._get(SEC_FACTS_URL.format(cik=cik))
-        series = {field: self._annual_series(facts, field) for field in CONCEPT_MAP}
+        filed: dict[int, str] = {}
+        series = {field: self._annual_series(facts, field, filed) for field in CONCEPT_MAP}
 
         all_years = sorted({y for s in series.values() for y in s})[-years:]
         rows = []
@@ -104,6 +112,7 @@ class EdgarProvider:
                 "ticker": ticker.upper(),
                 "fiscal_year": fy,
                 "period_end": f"{fy}-12-31",
+                "filing_date": filed.get(fy),
                 "revenue": series["revenue"].get(fy),
                 "operating_income": series["operating_income"].get(fy),
                 "net_income": series["net_income"].get(fy),
