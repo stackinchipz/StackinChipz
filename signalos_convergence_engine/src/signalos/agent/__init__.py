@@ -12,10 +12,12 @@ order would leave — guardrails live here in code, not in a model prompt.
 from signalos.agent.proposals import TradeProposal, build_proposals
 from signalos.agent.broker import ExecutionBroker, DryRunBroker, MCPBrokerStub
 from signalos.agent.robinhood_broker import RobinhoodMCPBroker
+from signalos.agent.tradier_broker import TradierBroker, occ_symbol
 from signalos.agent.runtime import run_agent
 
 __all__ = [
     "TradeProposal", "build_proposals",
     "ExecutionBroker", "DryRunBroker", "MCPBrokerStub", "RobinhoodMCPBroker",
+    "TradierBroker", "occ_symbol",
     "run_agent",
 ]

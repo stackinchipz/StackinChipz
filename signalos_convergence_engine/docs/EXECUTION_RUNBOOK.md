@@ -95,3 +95,37 @@ when armed.
 ### Staged rollout (do not skip)
 propose-only → Model A manual approval → Model B **staged** (no send) →
 Model B armed with tiny size → full automation — risk caps live throughout.
+
+---
+
+## Options execution today — Tradier
+
+Robinhood is equities-only in beta, so route the **options** structures through
+Tradier (same token that feeds your chains). `signalos.agent.TradierBroker` builds
+Tradier order params (single-leg or multileg spread with OCC symbols) and posts
+them when armed.
+
+```python
+from signalos.agent import TradierBroker, run_agent
+import pandas as pd
+
+signals = pd.read_csv("outputs/screen_signals.csv")
+
+# Stage only (safe): build Tradier order params, send nothing.
+staged = run_agent(signals, broker=TradierBroker(), execute=True)
+
+# Live: preview first (Tradier preview=true), then place.
+broker = TradierBroker(token=TOKEN, account_id=ACCT, armed=True)
+for p in build_proposals_list:            # each sized proposal (contracts > 0)
+    print(broker.preview(p))              # cost / margin / warnings — places nothing
+    # broker.submit(p)                    # places once you're satisfied
+```
+
+Notes:
+- **Preview before place** — `preview()` uses Tradier `preview=true` (the analogue
+  of RH's `review_equity_order`); it never sends an order.
+- Set a **`limit_price`** on the proposal (net debit/credit, or single-leg limit)
+  before a live `submit()` — the builder flags it if missing.
+- Defined-risk only: singles + debit/credit spreads. No naked legs.
+- Two-barrier safety: sends only when `armed=True` **and** a real token+account
+  (or an injected `sender` for tests).

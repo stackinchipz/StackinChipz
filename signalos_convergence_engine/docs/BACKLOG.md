@@ -29,6 +29,9 @@
   filed dates + `as_of()` filter + `compute_capital_efficiency(asof_date=...)`. ✅
 - **DATA-004** IV-history store (`iv_store.py` + `update_iv_history.py`): true
   52-week IV rank instead of the cross-sectional fallback. ✅
+- **EXEC-002** Tradier options broker (`tradier_broker.py`): single-leg + multileg
+  defined-risk orders with OCC symbols, preview-before-place, two-barrier safety
+  — executes the options edge that RH's equities-only beta can't. ✅
 
 See `docs/CAPITAL_COMPOUNDER_SCREEN.md`, `docs/RISK_ENGINE.md`,
 `docs/OPTIONS_BACKTEST.md`, `docs/AGENT_EXECUTION.md`, `docs/ALPHA_SIGNALS.md`,
