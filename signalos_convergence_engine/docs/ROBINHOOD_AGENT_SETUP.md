@@ -7,8 +7,25 @@ from the **screen** (Track B), which only produces ranked candidates.
 ```
 Screen (Track B)  →  ranked signals  →  Agent runtime (Track A)
                                          → risk-engine guardrails
-                                         → Robinhood MCP places defined-risk trade
+                                         → Robinhood MCP places the order
 ```
+
+## ⚠️ Beta reality (verified 2026-06)
+Robinhood agentic trading is **equities-only** in beta. Options, crypto, and
+futures are "coming soon." The MCP's only trade tools are `review_equity_order`,
+`place_equity_order`, `cancel_equity_order` — **there is no options order tool
+yet.** SignalOS produces *options* structures, so on Robinhood today you either:
+- route the screen's **directional conviction to equity** orders
+  (`RobinhoodMCPBroker(asset_class="equity")`), or
+- keep **options execution on Tradier** and use RH for equities.
+When RH ships options tools, the broker's `asset_class="option"` path lights up.
+
+### MCP tools (confirmed)
+- Read: `get_accounts`, `get_portfolio`, `get_equity_positions`,
+  `get_equity_quotes`, `get_equity_orders`, `search`
+- Watchlists: `get_watchlists`, `add_to_watchlist`, `update_watchlist`
+- Trade: `review_equity_order` → `place_equity_order`, `cancel_equity_order`
+  (always **review before place**)
 
 ## Important: where this runs
 **Not in the Claude Code web sandbox.** That environment is ephemeral and
@@ -19,12 +36,13 @@ machine you control, or use Robinhood's own in-app agent connection.
 ## Checklist
 
 ### 1. Enable on the Robinhood side
-- [ ] Enroll in the agentic-trading **beta** in the Robinhood app.
-- [ ] Tap **Connect your agent** and create the **dedicated agent sub-account**
-      (walled off from your main portfolio).
-- [ ] **Fund** the sub-account with only risk capital.
-- [ ] Capture the **MCP endpoint + OAuth** details Robinhood provides. Confirm
-      the exact URL from the app — do not hard-code a guessed endpoint.
+- [ ] Have a **primary individual investing account in good standing**.
+- [ ] Enroll in the agentic-trading **beta** (**desktop device required** to open
+      the Agentic account and authenticate the agent).
+- [ ] Connect the MCP (below) — onboarding to create the **dedicated Agentic
+      account** auto-opens after you connect.
+- [ ] **Fund** the Agentic account with only risk capital. It's the only account
+      the agent can trade; all other accounts stay read-only.
 
 ### 2. Connect the MCP locally
 Add the Robinhood MCP server to local Claude Code. These are Robinhood's

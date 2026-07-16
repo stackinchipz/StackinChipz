@@ -5,6 +5,12 @@ run **locally** (never in a shared/ephemeral environment). Start with Model A.
 
 Robinhood MCP: `https://agent.robinhood.com/mcp/trading` · server `robinhood-trading`.
 
+> **⚠️ Beta reality (verified 2026-06): Robinhood is equities-only.** Trade tools
+> are `review_equity_order` / `place_equity_order` / `cancel_equity_order` — no
+> options tool yet. SignalOS builds options structures, so on RH today route the
+> **directional conviction to equities** (`asset_class="equity"`), or keep
+> **options on Tradier**. Always `review_equity_order` before `place_equity_order`.
+
 ---
 
 ## Model A — Claude Code drives it (recommended, human-in-the-loop)
@@ -28,12 +34,16 @@ No new code. You approve every trade.
    ```
    This writes `outputs/screen_signals.csv` and `outputs/agent_proposals.jsonl`
    (each proposal already sized by the risk engine, with thesis + invalidation).
-2. In local Claude Code (RH MCP connected), prompt:
-   > "Read `outputs/agent_proposals.jsonl`. For each proposal with status
-   > PROPOSED and contracts > 0, place the **defined-risk** structure in my
-   > Robinhood agent account using the robinhood-trading MCP. Show me each order
-   > for confirmation before submitting. Never place naked options. Stop if total
-   > open risk would exceed my heat cap."
+2. In local Claude Code (RH MCP connected), prompt (equities-only beta):
+   > "Read `outputs/agent_proposals.jsonl`. For each **Bullish** proposal with
+   > status PROPOSED and contracts > 0, buy the underlying stock in my Robinhood
+   > Agentic account: first call `review_equity_order`, show me the pre-trade
+   > result, and only `place_equity_order` after I confirm. Skip bearish/options
+   > structures (RH beta can't place them). Stop if total notional would exceed
+   > my budget."
+
+   (Once RH ships options tools — or for options today — run the same flow
+   against **Tradier** instead, using the defined-risk structures verbatim.)
 3. Approve each order. Robinhood notifies you on every fill ("Track every move").
 
 ### Guardrails that still apply
@@ -58,7 +68,9 @@ import pandas as pd
 signals = pd.read_csv("outputs/screen_signals.csv")
 
 # 1) Stage only (safe): build orders, send nothing.
-staged = run_agent(signals, broker=RobinhoodMCPBroker(), execute=True)
+#    asset_class="equity" -> RH-executable equity orders (beta reality).
+#    asset_class="option" -> defined-risk options specs for Tradier/future RH.
+staged = run_agent(signals, broker=RobinhoodMCPBroker(asset_class="equity"), execute=True)
 #   every routing -> status "STAGED", submitted False
 
 # 2) Go live (two barriers): armed=True AND a real invoker.
