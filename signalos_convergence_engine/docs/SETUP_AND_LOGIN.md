@@ -66,18 +66,29 @@ cp .env.example .env
 set -a; source .env; set +a
 ```
 
-## 5. Run on live data
+## 5. Run on live data — one command
+Once `.env` is filled in and sourced, this does the whole loop (fetch Tradier
+data → EDGAR fundamentals → screen → sized proposals → IV history):
 ```bash
-# Live screen with free EDGAR fundamentals:
+python scripts/run_live.py                 # screen + proposals
+python scripts/run_live.py --preview 5      # + Tradier preview of top 5 (places NOTHING)
+```
+Backtest the result:
+```bash
+python scripts/run_options_backtest.py --signals outputs/screen_signals.csv
+```
+
+<details><summary>Or run the steps manually</summary>
+
+```bash
+python scripts/fetch_tradier_data.py --sandbox        # -> data/live/*.csv
 python scripts/run_screen.py \
   --stock-daily data/live/stock_daily.csv \
   --option-chain data/live/option_chain_latest.csv \
   --fundamentals-provider edgar --edgar-ua "$EDGAR_USER_AGENT"
-
-# (Fetch data/live/*.csv from Tradier first — see scripts/fetch_tradier_data.py.)
-python scripts/run_options_backtest.py --signals outputs/screen_signals.csv
 python scripts/update_iv_history.py --option-chain data/live/option_chain_latest.csv
 ```
+</details>
 
 ## 6. Execute options (Tradier) — preview then place
 ```python
