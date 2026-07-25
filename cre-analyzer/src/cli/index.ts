@@ -12,6 +12,7 @@ import { ConsoleReporter } from '../reporters/ConsoleReporter';
 import { JsonReporter } from '../reporters/JsonReporter';
 import { HtmlReporter } from '../reporters/HtmlReporter';
 import { registerCalcCommands } from './calc';
+import { registerRobotaxiCommand } from './robotaxi';
 
 const program = new Command();
 
@@ -21,6 +22,7 @@ program
   .version('1.0.0');
 
 registerCalcCommands(program);
+registerRobotaxiCommand(program);
 
 program
   .command('analyze')

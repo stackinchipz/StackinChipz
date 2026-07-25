@@ -8,6 +8,7 @@ export * from './engine/buyAnalyzer';
 export * from './engine/leaseAnalyzer';
 export * from './engine/comparisonEngine';
 export * from './engine/sensitivity';
+export * from './engine/robotaxi';
 export * from './providers';
 export { ConsoleReporter } from './reporters/ConsoleReporter';
 export { JsonReporter } from './reporters/JsonReporter';
