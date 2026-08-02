@@ -47,6 +47,8 @@ def main():
     p.add_argument("--max-dte", type=int, default=90)
     p.add_argument("--preview", type=int, default=0, metavar="N",
                    help="Tradier-preview the top N options proposals (places nothing)")
+    p.add_argument("--no-databento", action="store_true",
+                   help="Skip Databento OPRA tape enrichment even if a key is set")
     args = p.parse_args()
 
     token = os.getenv("TRADIER_TOKEN")
@@ -64,8 +66,27 @@ def main():
     live = ROOT / "data" / "live"
     live.mkdir(parents=True, exist_ok=True)
     stock_daily.to_csv(live / "stock_daily.csv", index=False)
-    option_chain.to_csv(live / "option_chain_latest.csv", index=False)
     print(f"      {len(stock_daily):,} stock rows, {len(option_chain):,} option rows.")
+
+    # Optional: replace the chain's placeholder flow fields with the real OPRA
+    # tape (ask-side ratio, repeat flow, sweeps, true volume baseline).
+    if os.getenv("DATABENTO_API_KEY") and not args.no_databento:
+        print("[1b/6] Databento OPRA tape — computing REAL ask-side flow...")
+        try:
+            from signalos.data_sources.databento_provider import (
+                DatabentoOptionsProvider, compute_flow_features, enrich_option_chain)
+            dbp = DatabentoOptionsProvider(api_key=os.environ["DATABENTO_API_KEY"])
+            session = pd.Timestamp.utcnow().strftime("%Y-%m-%d")
+            trades = dbp.fetch_option_trades(universe, start=session)
+            flow = compute_flow_features(trades)
+            baseline = dbp.fetch_contract_volume_baseline(
+                universe, start=(pd.Timestamp.utcnow() - pd.Timedelta(days=40)).strftime("%Y-%m-%d"))
+            option_chain = enrich_option_chain(option_chain, flow, baseline)
+            print(f"      enriched {len(flow):,} contracts with real tape flow.")
+        except Exception as e:
+            print(f"      WARN: Databento enrichment skipped ({e}); "
+                  "using Tradier placeholder flow fields.")
+    option_chain.to_csv(live / "option_chain_latest.csv", index=False)
 
     # Fundamentals (EDGAR free). Non-fatal if it fails -> capital layer neutral.
     print("[2/6] EDGAR fundamentals...")
