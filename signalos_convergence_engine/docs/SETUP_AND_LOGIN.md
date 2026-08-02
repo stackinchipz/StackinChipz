@@ -111,6 +111,28 @@ for p in [x.to_dict() for x in props if x.contracts > 0]:
     # broker.submit(p)                  # places once you're satisfied
 ```
 
+## Running from a restricted environment (Claude Code on the web, CI, etc.)
+
+Cloud sandboxes typically allow only dev infrastructure (`github.com`,
+`pypi.org`) and block market-data hosts. That's a **network policy**, not a
+vendor limitation — every provider is blocked identically. The demo path
+(`run_screen.py --demo`) works anywhere; only live data needs egress.
+
+To enable live data in such an environment, allow these hosts:
+
+```
+api.tradier.com          # live brokerage + market data
+sandbox.tradier.com      # paper trading
+data.sec.gov             # EDGAR fundamentals
+www.sec.gov              # EDGAR ticker->CIK map
+hist.databento.com       # Databento historical (OPRA)
+live.databento.com       # Databento live
+agent.robinhood.com      # Robinhood agentic MCP
+```
+
+**Never put a *live* brokerage token in an ephemeral/shared environment** — use
+a sandbox token there, and keep live credentials on a machine you control.
+
 ## Order of operations (don't skip)
 1. Demo works → 2. Sandbox Tradier data + backtest → 3. Sandbox paper orders
 (preview → submit) → 4. Live token, tiny size → 5. scale. Risk caps enforced
