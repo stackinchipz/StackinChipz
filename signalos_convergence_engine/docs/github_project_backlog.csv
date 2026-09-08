@@ -1,0 +1,12 @@
+id,title,priority,label,description
+DATA-001,Add real stock data provider,P0,data,Add provider abstraction for OHLCV data.
+DATA-002,Add real options chain provider,P0,data,Normalize live option-chain data into SignalOS schema.
+DATA-003,Add data validation,P0,data,Validate required columns and sane values before scoring.
+BT-001,Add true options P&L backtest,P0,backtest,"Model bid/ask, slippage, expiry, and stops."
+UI-001,Improve mobile dashboard,P1,ui,Optimize Streamlit layout for phone use.
+RISK-001,Add position sizing engine,P1,risk,Convert account size and risk % into max contracts.
+JOURNAL-001,Add trade journal,P1,journal,Manual trade logging and monthly review.
+TOS-001,Add thinkorswim companion scripts,P1,tos,Add thinkScript files and usage guide.
+ALERT-001,Add daily email report,P2,alerts,Email top daily setups.
+EP-001,Add Episodic Pivot scanner,P2,strategy,Gap + volume + earnings surprise scanner.
+PS-001,Add Parabolic Short scanner,P2,strategy,Detect extension and failure setup.

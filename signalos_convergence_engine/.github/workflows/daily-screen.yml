@@ -1,0 +1,113 @@
+name: Daily SignalOS Screen
+
+# Runs the live screen on GitHub's runners, which have unrestricted internet
+# access. This is the phone-friendly path: no local machine required, and it
+# bypasses the network egress limits of cloud dev sandboxes.
+#
+# Setup (once): repo -> Settings -> Secrets and variables -> Actions -> New secret
+#   TRADIER_TOKEN        (required)  sandbox token to start
+#   TRADIER_ACCOUNT_ID   (required)  e.g. VA########
+#   TRADIER_ENV          (optional)  "sandbox" (default) or "live"
+#   EDGAR_USER_AGENT     (required)  "SignalOS research you@email.com"
+#   DATABENTO_API_KEY    (optional)  enables real OPRA ask-side flow
+#
+# Results land in the run's Artifacts (downloadable on a phone) and, if enabled
+# below, are committed to the signalos-outputs branch for easy viewing.
+
+on:
+  schedule:
+    # 21:15 UTC = ~4:15pm ET, shortly after the US close (weekdays).
+    - cron: "15 21 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      preview:
+        description: "Tradier-preview the top N proposals (0 = none; places nothing)"
+        required: false
+        default: "0"
+
+permissions:
+  contents: write
+
+jobs:
+  screen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: signalos_convergence_engine
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install databento || echo "databento optional - skipping"
+
+      - name: Preflight credentials
+        env:
+          TRADIER_TOKEN: ${{ secrets.TRADIER_TOKEN }}
+          TRADIER_ACCOUNT_ID: ${{ secrets.TRADIER_ACCOUNT_ID }}
+          TRADIER_ENV: ${{ secrets.TRADIER_ENV || 'sandbox' }}
+          EDGAR_USER_AGENT: ${{ secrets.EDGAR_USER_AGENT }}
+          DATABENTO_API_KEY: ${{ secrets.DATABENTO_API_KEY }}
+        run: python scripts/check_setup.py
+
+      - name: Run live screen
+        env:
+          TRADIER_TOKEN: ${{ secrets.TRADIER_TOKEN }}
+          TRADIER_ACCOUNT_ID: ${{ secrets.TRADIER_ACCOUNT_ID }}
+          TRADIER_ENV: ${{ secrets.TRADIER_ENV || 'sandbox' }}
+          EDGAR_USER_AGENT: ${{ secrets.EDGAR_USER_AGENT }}
+          DATABENTO_API_KEY: ${{ secrets.DATABENTO_API_KEY }}
+        run: python scripts/run_live.py --preview ${{ github.event.inputs.preview || 0 }}
+
+      - name: Options backtest on today's signals
+        run: |
+          python scripts/run_options_backtest.py \
+            --signals outputs/screen_signals.csv \
+            --stock-daily data/live/stock_daily.csv || \
+            echo "backtest skipped (insufficient forward data)"
+
+      - name: Summary to job page
+        run: |
+          {
+            echo "## SignalOS — $(date -u +%Y-%m-%d)"
+            echo ""
+            echo '```'
+            head -20 outputs/screen_signals.csv | cut -c1-200
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload results
+        uses: actions/upload-artifact@v4
+        with:
+          name: signalos-screen-${{ github.run_number }}
+          path: |
+            signalos_convergence_engine/outputs/*.csv
+            signalos_convergence_engine/outputs/*.jsonl
+            signalos_convergence_engine/data/live/iv_history.csv
+          retention-days: 30
+
+      # Persists outputs (incl. the accumulating IV history) so the 52-week IV
+      # rank sharpens over time instead of resetting each run.
+      - name: Commit outputs to signalos-outputs branch
+        continue-on-error: true
+        run: |
+          cd "$GITHUB_WORKSPACE"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin signalos-outputs || true
+          git checkout signalos-outputs 2>/dev/null || git checkout --orphan signalos-outputs
+          mkdir -p results
+          cp signalos_convergence_engine/outputs/*.csv results/ 2>/dev/null || true
+          cp signalos_convergence_engine/outputs/*.jsonl results/ 2>/dev/null || true
+          cp signalos_convergence_engine/data/live/iv_history.csv results/ 2>/dev/null || true
+          git add -f results/
+          git commit -m "Screen results $(date -u +%Y-%m-%d)" || exit 0
+          git push origin signalos-outputs
