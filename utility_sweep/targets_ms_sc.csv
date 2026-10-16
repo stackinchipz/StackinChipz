@@ -1,0 +1,75 @@
+utility_name,parent_company,state,type,website
+4-County Electric Power Association,TVA (distributor),MS,coop,https://www.4county.org
+Alcorn County Electric Power Association,TVA (distributor),MS,coop,https://www.acepa.com
+Central Electric Power Association,TVA (distributor),MS,coop,https://www.centralepa.com
+Coahoma Electric Power Association,Cooperative Energy (member),MS,coop,https://www.coahomaepa.com
+Coast Electric Power Association,Cooperative Energy (member),MS,coop,https://www.coastepa.com
+Delta Electric Power Association,Cooperative Energy (member),MS,coop,https://www.deltaepa.com
+Dixie Electric Power Association,Cooperative Energy (member),MS,coop,https://www.dixieepa.com
+East Mississippi Electric Power Association,TVA (distributor),MS,coop,https://www.emepa.com
+Magnolia Electric Power Association,Cooperative Energy (member),MS,coop,https://www.magnoliaelectric.com
+Monroe County Electric Power Association,TVA (distributor),MS,coop,https://www.mcepa.com
+Natchez Trace Electric Power Association,TVA (distributor),MS,coop,https://www.natcheztraceepa.com
+North East Mississippi Electric Power Association,TVA (distributor),MS,coop,https://www.nempa.com
+Northcentral Electric Cooperative,TVA (distributor),MS,coop,https://www.northcentralelectric.com
+Pearl River Valley Electric Power Association,Cooperative Energy (member),MS,coop,https://www.prvepa.com
+Pontotoc Electric Power Association,TVA (distributor),MS,coop,https://www.pontotocepa.com
+Prentiss County Electric Power Association,TVA (distributor),MS,coop,https://www.pcepa.com
+Singing River Electric,Cooperative Energy (member),MS,coop,https://www.singingriver.com
+Southern Pine Electric,Cooperative Energy (member),MS,coop,https://www.southernpine.coop
+Southwest Mississippi Electric Power Association,Cooperative Energy (member),MS,coop,https://www.swepa.coop
+Tallahatchie Valley Electric Power Association,TVA (distributor),MS,coop,https://www.tvepa.com
+Tippah Electric Power Association,TVA (distributor),MS,coop,https://www.tippahepa.com
+Tishomingo County Electric Power Association,TVA (distributor),MS,coop,https://www.tcepa.com
+Tombigbee Electric Power Association,TVA (distributor),MS,coop,https://www.tombigbeeelectric.com
+Twin County Electric Power Association,Cooperative Energy (member),MS,coop,https://www.twincountyepa.com
+Yazoo Valley Electric Power Association,Cooperative Energy (member),MS,coop,https://www.yazoovalley.com
+Aiken Electric Cooperative,Central Electric Power Cooperative (member),SC,coop,https://www.aikenco-op.org
+Berkeley Electric Cooperative,Central Electric Power Cooperative (member),SC,coop,https://www.berkeleyelectric.coop
+Black River Electric Cooperative,Central Electric Power Cooperative (member),SC,coop,https://www.blackriver.coop
+Blue Ridge Electric Cooperative,Central Electric Power Cooperative (member),SC,coop,https://www.blueridge.coop
+Broad River Electric Cooperative,Central Electric Power Cooperative (member),SC,coop,https://www.broadriverelectric.com
+Coastal Electric Cooperative,Central Electric Power Cooperative (member),SC,coop,https://www.coastalelectric.coop
+Edisto Electric Cooperative,Central Electric Power Cooperative (member),SC,coop,https://www.edistoelectric.com
+Fairfield Electric Cooperative,Central Electric Power Cooperative (member),SC,coop,https://www.fairfield.coop
+Horry Electric Cooperative,Central Electric Power Cooperative (member),SC,coop,https://www.horryelectric.com
+Laurens Electric Cooperative,Central Electric Power Cooperative (member),SC,coop,https://www.laurenselectric.com
+Little River Electric Cooperative,Central Electric Power Cooperative (member),SC,coop,https://www.littleriverelectric.com
+Lynches River Electric Cooperative,Central Electric Power Cooperative (member),SC,coop,https://www.lynchesriver.com
+Marlboro Electric Cooperative,Central Electric Power Cooperative (member),SC,coop,https://www.marlboroelectric.coop
+Mid-Carolina Electric Cooperative,Central Electric Power Cooperative (member),SC,coop,https://www.mcecoop.com
+Newberry Electric Cooperative,Central Electric Power Cooperative (member),SC,coop,https://www.nec.coop
+Palmetto Electric Cooperative,Central Electric Power Cooperative (member),SC,coop,https://www.palmetto.coop
+Pee Dee Electric Cooperative,Central Electric Power Cooperative (member),SC,coop,https://www.pdec.com
+Santee Electric Cooperative,Central Electric Power Cooperative (member),SC,coop,https://www.santee.org
+Tri-County Electric Cooperative,Central Electric Power Cooperative (member),SC,coop,https://www.tri-countyelectric.net
+York Electric Cooperative,Central Electric Power Cooperative (member),SC,coop,https://www.yorkelectric.net
+Clarksdale Public Utilities,City of Clarksdale / TVA (distributor),MS,muni,https://www.cpu.com
+Greenwood Utilities,City of Greenwood / MEAM,MS,muni,https://www.greenwoodutilities.com
+Columbus Light & Water,City of Columbus / TVA (distributor),MS,muni,https://www.columbuslw.com
+Tupelo Water & Light,City of Tupelo / TVA (distributor),MS,muni,https://www.tupeloms.gov
+Starkville Utilities,City of Starkville / TVA (distributor),MS,muni,https://www.starkvilleutilities.com
+Oxford Electric Department,City of Oxford / TVA (distributor),MS,muni,https://www.oxfordms.net
+Holly Springs Utility Department,City of Holly Springs / TVA (distributor),MS,muni,https://www.hollyspringsms.us
+West Point Water & Light,City of West Point / TVA (distributor),MS,muni,https://www.cityofwestpoint.net
+Amory Water & Electric,City of Amory / TVA (distributor),MS,muni,https://www.amory.ms
+New Albany Light Gas & Water,City of New Albany / TVA (distributor),MS,muni,https://www.nalgw.com
+Canton Municipal Utilities,City of Canton / MEAM,MS,muni,https://www.cmu.ms
+Philadelphia Utilities,City of Philadelphia / TVA (distributor),MS,muni,https://www.philadelphiautilities.com
+Kosciusko Water & Light,City of Kosciusko / TVA (distributor),MS,muni,https://www.kosciuskowaterandlight.com
+Yazoo City Public Service Commission,City of Yazoo City / MEAM,MS,muni,https://www.yazoocitypsc.com
+Abbeville Utilities,City of Abbeville / PMPA,SC,muni,https://www.abbevillecitysc.com
+Clinton Utilities,City of Clinton / PMPA,SC,muni,https://www.cityofclintonsc.com
+Easley Combined Utilities,City of Easley / PMPA,SC,muni,https://www.ecu.coop
+Gaffney Board of Public Works,City of Gaffney / PMPA,SC,muni,https://www.gbpw.com
+Greer Commission of Public Works,City of Greer / PMPA,SC,muni,https://www.greercpw.com
+Laurens Commission of Public Works,City of Laurens / PMPA,SC,muni,https://www.laurenscpw.com
+Newberry Utilities,City of Newberry / PMPA,SC,muni,https://www.cityofnewberry.com
+Rock Hill Utilities,City of Rock Hill / PMPA,SC,muni,https://www.cityofrockhill.com
+Union Utilities,City of Union / PMPA,SC,muni,https://www.cityofunion.org
+Westminster Utilities,City of Westminster / PMPA,SC,muni,https://www.westminstersc.org
+Orangeburg Department of Public Utilities,City of Orangeburg,SC,muni,https://www.orbgdpu.com
+Greenwood Commissioners of Public Works,City of Greenwood,SC,muni,https://www.greenwoodcpw.com
+Seneca Light & Water,City of Seneca,SC,muni,https://www.seneca.sc.us
+Camden Utilities,City of Camden,SC,muni,https://www.cityofcamden.org
+Georgetown Utilities,City of Georgetown,SC,muni,https://www.cogsc.com
