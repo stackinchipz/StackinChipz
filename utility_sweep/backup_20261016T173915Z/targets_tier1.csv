@@ -1,0 +1,49 @@
+utility_name,parent_company,state,type,website
+Duke Energy,Duke Energy,NC/IN/OH/SC,iou_parent,https://www.duke-energy.com
+Duke Energy Carolinas,Duke Energy,SC,iou,https://www.duke-energy.com
+Duke Energy Progress,Duke Energy,SC,iou,https://www.duke-energy.com
+Duke Energy Indiana,Duke Energy,IN,iou,https://www.duke-energy.com
+Duke Energy Ohio,Duke Energy,OH,iou,https://www.duke-energy.com
+American Electric Power (AEP),AEP,OH/IN/TN,iou_parent,https://www.aep.com
+AEP Ohio,AEP,OH,iou,https://www.aepohio.com
+Appalachian Power,AEP,TN,iou,https://www.appalachianpower.com
+Indiana Michigan Power,AEP,IN,iou,https://www.indianamichiganpower.com
+Kingsport Power (AEP Appalachian Power),AEP,TN,iou,https://www.appalachianpower.com
+Southern Company,Southern Company,GA/AL/MS,iou_parent,https://www.southerncompany.com
+Georgia Power,Southern Company,GA,iou,https://www.georgiapower.com
+Alabama Power,Southern Company,AL,iou,https://www.alabamapower.com
+Mississippi Power,Southern Company,MS,iou,https://www.mississippipower.com
+FirstEnergy,FirstEnergy,OH,iou_parent,https://www.firstenergycorp.com
+Ohio Edison,FirstEnergy,OH,iou,https://www.firstenergycorp.com
+The Illuminating Company,FirstEnergy,OH,iou,https://www.firstenergycorp.com
+Toledo Edison,FirstEnergy,OH,iou,https://www.firstenergycorp.com
+Entergy,Entergy,MS,iou_parent,https://www.entergy.com
+Entergy Mississippi,Entergy,MS,iou,https://www.entergy-mississippi.com
+Entergy Arkansas,Entergy,AR,iou,https://www.entergy-arkansas.com
+Dominion Energy,Dominion Energy,SC,iou_parent,https://www.dominionenergy.com
+Dominion Energy South Carolina,Dominion Energy,SC,iou,https://www.dominionenergy.com
+AES Corporation,AES,OH/IN,iou_parent,https://www.aes.com
+AES Ohio,AES,OH,iou,https://www.aes-ohio.com
+AES Indiana,AES,IN,iou,https://www.aesindiana.com
+NIPSCO,NiSource,IN,iou,https://www.nipsco.com
+CenterPoint Energy Indiana Electric (Indiana South),CenterPoint Energy,IN,iou,https://www.centerpointenergy.com
+Buckeye Power,,OH,gt,https://www.buckeyepower.com
+Wabash Valley Power Alliance,,IN,gt,https://www.wvpa.com
+Hoosier Energy,,IN,gt,https://www.hoosierenergy.com
+Oglethorpe Power,,GA,gt,https://www.opc.com
+Georgia Transmission Corporation,,GA,gt,https://www.gatrans.com
+Georgia System Operations Corporation,,GA,gt,https://www.gasoc.com
+Central Electric Power Cooperative,,SC,gt,https://www.cepci.org
+PowerSouth Energy Cooperative,,AL,gt,https://www.powersouth.com
+Cooperative Energy,,MS,gt,https://www.cooperativeenergy.com
+Ohio Valley Electric Corporation,,OH/IN,gt,https://www.ovec.com
+Tennessee Valley Authority,,TN/AL/MS/GA,federal,https://www.tva.com
+Santee Cooper,,SC,state_authority,https://www.santeecooper.com
+American Municipal Power (AMP),,OH,jaa,https://www.amppartners.org
+Indiana Municipal Power Agency (IMPA),,IN,jaa,https://www.impa.com
+MEAG Power,,GA,jaa,https://www.meagpower.org
+Piedmont Municipal Power Agency (PMPA),,SC,jaa,https://www.pmpa.com
+Energy Southeast (formerly AMEA),,AL,jaa,https://www.energysoutheast.com
+Mississippi Municipal Energy Agency (MMEA),,MS,jaa,https://www.mmea.ms
+Tennessee Valley Public Power Association (TVPPA),,TN,association,https://www.tvppa.com
+Electric Cities of Georgia,,GA,association,https://www.ecoga.org
