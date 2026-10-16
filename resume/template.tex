@@ -1,54 +1,116 @@
-% US/ATS resume template — compile with: lualatex template.tex
-% Target: exactly 1 page. No photo, no DOB (US convention).
-% /apply copies this to resume.tex and fills it from 01-candidate-profile.md.
+%% US/ATS resume template. Compile with:  lualatex -interaction=nonstopmode template.tex
+%% Target: EXACTLY 1 page (2 only for 10+ yrs senior roles, confirmed with the user).
+%% No photo, no date of birth, no marital status (US convention).
+%% /apply copies this to resume/resume_<company>_<role>.tex and fills it from
+%% 01-candidate-profile.md. Never invent content. See 05-resume-templates.md.
+%% Layout lessons adapted from MadsLorentzen/ai-job-search (MIT).
+%%
+%% Rules baked into this file (keep them when tailoring):
+%%  * Date fields use a SINGLE ASCII hyphen: {2021-2024}, {Jan 2021 - Present}.
+%%    `--` becomes an en-dash (U+2013) in the PDF text layer and some ATS
+%%    importers (e.g. Workday) then drop the date range. `--` is fine in prose.
+%%  * Never put \vspace between \item entries; let itemize space them evenly.
+%%  * Escape & % $ # _ in body text (\& \% \$ \# \_). An unescaped % silently
+%%    deletes the rest of the line from the PDF.
+%%  * Use \needspace{5\baselineskip} before an individual \cventry that orphans
+%%    (never before a \section), and only after a compile shows the orphan.
 
 \documentclass[11pt,letterpaper,sans]{moderncv}
-\moderncvstyle{banking}   % clean, ATS-friendly; alternatives: classic, casual
-\moderncvcolor{black}     % keep it conservative for ATS
+\moderncvstyle{banking}   % single-column, ATS-friendly
+\moderncvcolor{black}     % conservative; keeps every color consistent
 
-\usepackage[scale=0.88]{geometry}
-\usepackage{needspace}    % \needspace{} to prevent bad page breaks
+% pdflatex fallback only (lualatex skips this): without T1 encoding, accented
+% letters land decomposed in the text layer and ATS keyword matches fail.
+\ifpdftex\usepackage[T1]{fontenc}\fi
+
+% moderncv loads hyperref itself at end of preamble, so configure it there.
+% Keep pdfpagemode=UseNone so the PDF does not open in fullscreen mode.
+\AtEndPreamble{\hypersetup{
+    colorlinks=true,
+    urlcolor=black,
+    linkcolor=black,
+    pdftitle={First Last - Resume},
+    pdfauthor={First Last},
+    pdfpagemode=UseNone,
+}}
+
+\usepackage[scale=0.88,top=0.5in,bottom=0.5in]{geometry}
+\usepackage{needspace}    % \needspace{N\baselineskip} to prevent orphaned entries
 \setlength{\hintscolumnwidth}{2.6cm}
 
+% Tighter, uniform bullets (no inter-item \vspace anywhere).
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=1.1em,topsep=1pt,itemsep=0pt,parsep=1pt,partopsep=0pt}
+
 % ---- Personal data (no photo / no DOB on purpose) ----
+% Every contact detail must appear as printed text: an ATS reads the text layer,
+% not icons or link targets. Delete any line you don't use (an empty \address{}{}{}
+% fails to compile).
 \name{First}{Last}
-\title{Target Role}
-\phone[mobile]{+1~(000)~000~0000}
-\email{you@example.com}
-\social[linkedin]{your-linkedin}
-\social[github]{your-github}
+\title{Target Role Title}
 \address{City, ST}{}{}
+\phone[mobile]{(000)~000-0000}
+\email{you@example.com}
+\social[linkedin]{your-linkedin-handle}
+\social[github]{your-github-handle}
 
 \begin{document}
 \makecvtitle
-\vspace*{-6mm}
+\vspace*{-8mm}
 
-% ---- Summary (optional; cut if space is tight) ----
+% ============================================================
+%  SUMMARY (2-3 lines, tailored per role; first thing to trim on overflow)
+% ============================================================
 \section{Summary}
-\cvitem{}{One or two lines: who you are, your strongest relevant skills, and the
-value you bring to the target role. Cut this section first if over 1 page.}
+\cvitem{}{Two or three lines: your role and years of experience, the two or three
+strengths this posting asks for, and the value you bring. Use the posting's
+exact core term where it is true.}
 
-% ---- Experience ----
+% ============================================================
+%  EXPERIENCE (reverse-chronological; 3-5 bullets recent, 2-3 older)
+% ============================================================
 \section{Experience}
-\cventry{20XX--Present}{Job Title}{Company}{City, ST}{}{
+\cventry{Jan 2023 - Present}{Job Title}{Company Name}{City, ST}{}{%
 \begin{itemize}
   \item Action verb + what you did + quantified result (\%, \$, scale, time).
-  \item Second achievement, tailored to the target posting's keywords.
+  \item Second achievement that mirrors a keyword from the target posting.
+  \item Third achievement showing ownership or initiative, with an outcome.
 \end{itemize}}
 
-\cventry{20XX--20XX}{Job Title}{Company}{City, ST}{}{
+\cventry{2020-2022}{Job Title}{Company Name}{City, ST}{}{%
 \begin{itemize}
-  \item Achievement bullet.
-  \item Achievement bullet.
+  \item Achievement bullet with a measurable result.
+  \item Achievement bullet relevant to the target role.
 \end{itemize}}
 
-% ---- Skills ----
-\section{Skills}
-\cvitem{Core}{Skill, Skill, Skill}
-\cvitem{Tools}{Tool, Framework, Platform}
+\cventry{Jun 2019 - Dec 2019}{Internship or Contract Title}{Company Name}{City, ST}{}{%
+\begin{itemize}
+  \item Short roles get month ranges so the ATS sees both a start and an end.
+\end{itemize}}
 
-% ---- Education ----
+% ============================================================
+%  SKILLS (group by category; mirror posting terms you truly have)
+% ============================================================
+\section{Skills}
+\cvitem{Languages}{Skill, Skill, Skill}
+\cvitem{Tools}{Tool, Framework, Platform}
+\cvitem{Practices}{Method, Methodology, Domain}
+
+% ============================================================
+%  EDUCATION (degree title first; in-progress degrees must say so)
+% ============================================================
 \section{Education}
-\cventry{20XX}{Degree, Field}{School}{City, ST}{}{}
+\cventry{2015-2019}{B.S., Field of Study}{University Name}{City, ST}{}{}
+% In-progress example (a closed year range alone reads as finished):
+% \cventry{2024-2026}{M.S., Field}{University}{City, ST}{}{In progress, expected May 2026.}
+
+% ============================================================
+%  PROJECTS / CERTIFICATIONS (optional; include only if relevant)
+% ============================================================
+\section{Projects}
+\cvitem{Project Name}{One line on what it does and the result, with an evidence
+link: \href{https://example.com/project}{example.com/project}}
+
+% No "References" section: "References available upon request" is outdated in the US.
 
 \end{document}
