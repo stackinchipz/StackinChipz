@@ -7,5 +7,7 @@ Your application tracker lives here:
 
 Both are **git-ignored** (personal data). Only this README is committed.
 
-Status vocabulary (suggested): `saved`, `applied`, `screen`, `interview`,
-`offer`, `rejected`, `withdrawn`.
+Status vocabulary: `saved`, `drafted` (pre-submission) · `applied`, `screen`,
+`interview`, `offer` (open) · `hired`, `rejected`, `no_response`,
+`offer_declined`, `withdrawn` (final). Older records using the previous set
+still load.

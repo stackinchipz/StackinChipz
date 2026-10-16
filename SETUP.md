@@ -8,16 +8,21 @@
 | **Bun** | Runs the Adzuna search CLI | <https://bun.sh> |
 | **Python 3.10+** | Optional helper scripts | python.org / your package manager |
 | **LaTeX** (`lualatex` + `xelatex`) | Compiles resume & cover letter PDFs | TeX Live (Linux/macOS via MacTeX) or MiKTeX (Windows) |
+| **Poppler** (`pdfinfo`, `pdftoppm`, `pdftotext`) | Page-count check, PNG previews, ATS text check | `apt install poppler-utils` / `brew install poppler` |
 
 You also need an **Anthropic API key or Claude subscription** for Claude Code.
 
 ### LaTeX packages
 
-The templates use `moderncv`, `fontspec`, and `needspace`. With TeX Live:
+The resume uses `moderncv`, `enumitem`, and `needspace`; the cover letter uses
+`fontspec` with the Lato/Raleway fonts bundled in `cover_letters/OpenFonts/`
+(no font install needed). With TeX Live:
 
 ```bash
-tlmgr install moderncv fontspec needspace
+tlmgr install moderncv fontspec needspace enumitem
 ```
+
+On Debian/Ubuntu: `apt install texlive-latex-extra texlive-luatex texlive-xetex texlive-fonts-extra poppler-utils`.
 
 ## 2. Adzuna API keys (job search)
 
@@ -90,12 +95,16 @@ profile, writing style) from either:
 - `/apply <linkedin-url>` — tailor a full application for one posting.
   - If Claude can't fetch the LinkedIn page (auth wall), just paste the job
     description text after the command instead.
-- After `/apply`, compile the PDFs:
+- `/apply` compiles and inspects the PDFs itself. To rebuild by hand:
 
 ```bash
-cd resume        && lualatex resume.tex
-cd ../cover_letters && xelatex  cover_letter.tex
+cd resume        && lualatex resume_<slug>.tex
+cd ../cover_letters && xelatex cover_<slug>.tex
 ```
+
+  The cover letter `.tex` must stay directly in `cover_letters/` (fonts load
+  from the relative `OpenFonts/` path).
+- `/outcome` — record responses; `/interview` — prep for a scheduled interview.
 
 ## Notes
 

@@ -51,3 +51,9 @@ cover_letters/**/*.pdf
 cover_letters/**/*.aux
 cover_letters/**/*.log
 cover_letters/**/*.out
+
+# Tailored per-application sources and previews (personal data)
+resume/resume_*.tex
+resume/*.png
+cover_letters/cover_*.tex
+cover_letters/*.png

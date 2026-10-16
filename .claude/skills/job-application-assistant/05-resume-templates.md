@@ -10,17 +10,17 @@ How to produce the tailored resume. Terminology: always **resume**, never "CV".
 
 - **Source template:** `resume/template.tex` (moderncv, `banking` style,
   `black` color, `letterpaper`, no photo).
-- **Output file:** `resume/resume_<company>_<role>.tex` (lowercase, hyphens;
-  e.g. `resume_acme_data-analyst.tex`). If the user keeps role-type variants
+- **Output file:** `resume/resume_<slug>.tex`, where `<slug>` follows the rule
+  in `/apply` Step 0 (e.g. `resume_acme_corp_data_analyst.tex`). If the user keeps role-type variants
   (`resume/resume-backend.tex`, `resume/resume-ml.tex`), start from the closest
   one instead of the blank template.
 - **Compile with lualatex:**
 
   ```bash
-  cd resume && lualatex -interaction=nonstopmode resume_<company>_<role>.tex
+  cd resume && lualatex -interaction=nonstopmode resume_<slug>.tex
   ```
 
-  Expected: `Output written on resume_<company>_<role>.pdf (1 page, ...)`.
+  Expected: `Output written on resume_<slug>.pdf (1 page, ...)`.
   Any other page count is a failure to fix before showing the user. PDFs and
   aux/log files are git-ignored.
 
@@ -250,12 +250,12 @@ Failure modes that deserve special care:
 Never present a resume you have not compiled and looked at. "Looks fine in the
 `.tex`" is not acceptable (`CLAUDE.md`). Iterate until clean:
 
-1. **Compile:** `lualatex -interaction=nonstopmode resume_<company>_<role>.tex`.
+1. **Compile:** `lualatex -interaction=nonstopmode resume_<slug>.tex`.
    Fix every `!` error in the log.
-2. **Page count:** `pdfinfo resume_<company>_<role>.pdf | grep Pages` must
+2. **Page count:** `pdfinfo resume_<slug>.pdf | grep Pages` must
    print `Pages: 1`.
 3. **Render and inspect:**
-   `pdftoppm -png -r 80 resume_<company>_<role>.pdf resume_<company>_<role>`
+   `pdftoppm -png -r 80 resume_<slug>.pdf resume_<slug>`
    then open each generated PNG with the **Read** tool and look at it.
    Check for: orphaned entries, a near-empty bottom third, overfull lines
    running into the margin, clipped bullets, inconsistent spacing, missing
@@ -316,7 +316,7 @@ inspection and still extract as garbage. After the visual check, dump the text
 layer:
 
 ```bash
-pdftotext -enc UTF-8 resume_<company>_<role>.pdf - | less
+pdftotext -enc UTF-8 resume_<slug>.pdf - | less
 ```
 
 Always pass `-enc UTF-8` (some builds default to Latin-1 and turn every
@@ -368,7 +368,7 @@ Mechanical check for cause 1 (prints any year joined to a Unicode dash; no
 output means pass):
 
 ```bash
-pdftotext -enc UTF-8 resume_<company>_<role>.pdf - \
+pdftotext -enc UTF-8 resume_<slug>.pdf - \
   | LC_ALL=C.UTF-8 grep -nP '\d\s*[\x{2013}\x{2014}]|[\x{2013}\x{2014}]\s*\d'
 ```
 

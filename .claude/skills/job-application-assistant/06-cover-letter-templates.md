@@ -26,16 +26,16 @@ The cover letter uses a custom class (`cover_letters/cover.cls`) with Lato and
 Raleway (SIL Open Font License) bundled in `cover_letters/OpenFonts/fonts/`.
 
 - **Starting point:** `cover_letters/template.tex` (placeholder content, US Letter)
-- **Output file:** `cover_letters/cover_<company>_<role>.tex` (or the exact path `/apply` specifies), using the same lowercase-hyphenated naming as the resume
+- **Output file:** `cover_letters/cover_<slug>.tex`, using the same `<slug>` rule as `/apply` Step 0 and the resume
 - **Location matters:** the class loads fonts with a relative `Path = OpenFonts/fonts/...`, so the `.tex` file must live directly in `cover_letters/` and be compiled from that directory. A letter placed in a subfolder will fail with "font not found".
 
 ### Compile command
 
 ```bash
-cd cover_letters && xelatex -interaction=nonstopmode cover_<company>_<role>.tex
+cd cover_letters && xelatex -interaction=nonstopmode cover_<slug>.tex
 ```
 
-Expected log line: `Output written on cover_<company>_<role>.pdf (1 page, ...)`.
+Expected log line: `Output written on cover_<slug>.pdf (1 page, ...)`.
 Any page count other than 1 is a failure that must be fixed before presenting
 the letter. Build artifacts (`.pdf`, `.aux`, `.log`, `.out`) are git-ignored;
 never commit them.
@@ -45,9 +45,9 @@ never commit them.
 "Looks fine in the `.tex`" is not acceptable. After drafting, and again after
 the reviewer-driven revision:
 
-1. `xelatex -interaction=nonstopmode cover_<company>_<role>.tex` and confirm it succeeded.
-2. `pdfinfo cover_<company>_<role>.pdf | grep Pages` → must print `Pages: 1`.
-3. `pdftoppm -png -r 80 cover_<company>_<role>.pdf cover_preview` and open the PNG with the Read tool. Check:
+1. `xelatex -interaction=nonstopmode cover_<slug>.tex` and confirm it succeeded.
+2. `pdfinfo cover_<slug>.pdf | grep Pages` → must print `Pages: 1`.
+3. `pdftoppm -png -r 80 cover_<slug>.pdf cover_preview` and open the PNG with the Read tool. Check:
    - the signature line (closing + printed name) is fully visible at the bottom
    - no text runs off the page or overlaps the footer
    - bullet text is in the same font (Raleway Medium) as the body paragraphs

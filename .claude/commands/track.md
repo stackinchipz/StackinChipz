@@ -25,13 +25,20 @@ Otherwise pass the request through. Common operations:
   ```bash
   bun run tools/tracker.ts update --id 3 --status interview --notes "phone screen 6/12"
   ```
-- **Filter:** `bun run tools/tracker.ts list --status interview`
+- **Append a dated note / log a follow-up:**
+  `bun run tools/tracker.ts update --id 3 --append-note "recruiter replied"` ·
+  `bun run tools/tracker.ts update --id 3 --followup`
+- **Find an application:** `bun run tools/tracker.ts find --company "Acme" --open`
+- **Gone quiet:** `bun run tools/tracker.ts quiet --days 10`
+- **Filter:** `bun run tools/tracker.ts list --status interview` (also `--open`, `--final`, `--json`)
 - **Export to CSV:** `bun run tools/tracker.ts export`
 
 Behavior notes:
-- `/apply` should append an entry here automatically (status `applied`) after it
-  produces materials, recording the fit score from the evaluation step.
+- `/apply` records an entry automatically (`add --upsert --status drafted`)
+  with the fit score, deadline, and file paths; move it to `applied` once the
+  user actually submits.
 - When the user mentions an outcome ("got a screen at Acme", "rejected by X"),
-  update the matching record's status.
-- Status vocabulary: saved, applied, screen, interview, offer, rejected,
-  withdrawn.
+  prefer `/outcome`, which also archives materials and drafts follow-ups.
+- Status vocabulary: `saved`, `drafted` (pre-submission) · `applied`, `screen`,
+  `interview`, `offer` (open) · `hired`, `rejected`, `no_response`,
+  `offer_declined`, `withdrawn` (final).

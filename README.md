@@ -8,7 +8,10 @@ ATS-friendly templates.
 > Inspired by the open-source [`MadsLorentzen/ai-job-search`](https://github.com/MadsLorentzen/ai-job-search)
 > (MIT). The tailoring/review engine follows the same proven pattern; the job
 > *discovery* layer has been rebuilt for the US using the **Adzuna** API, and
-> the templates have been localized to US/ATS resume conventions.
+> the templates have been localized to US/ATS resume conventions. The skill
+> modules and commands port upstream's detailed guidance (eligibility gates,
+> scoring, research cache, compile-and-inspect loop, interview prep, outcome
+> tracking), adapted for US work authorization and pay-transparency norms.
 
 ## What it does
 
@@ -17,6 +20,9 @@ ATS-friendly templates.
 | `/setup` | Onboards your profile — from a resume paste, your `documents/` folder, or a guided interview. |
 | `/scrape` | Searches US jobs via Adzuna and ranks them by fit. |
 | `/apply <url-or-paste>` | Evaluates fit, tailors a resume + cover letter, runs a drafter→reviewer critique loop, compiles PDFs, and verifies layout. Works on a single **LinkedIn** job URL. |
+| `/rank` | Scores everything found by `/scrape` against your profile and keeps a shortlist (eligibility, location, and language vetoes). |
+| `/interview` | Builds a stage-specific interview prep pack (and an optional mock interview) for a tracked application. |
+| `/outcome` | Records what happened (screen, offer, rejection, silence), drafts follow-ups, and archives the materials. |
 | `/expand` | Enriches your profile by scanning GitHub, portfolios, and course history. |
 | `/upskill` | Analyzes skill gaps vs. target jobs and builds a learning plan. |
 | `/track` | Logs and reviews your applications (status board). |
@@ -58,9 +64,10 @@ LinkedIn has no open jobs API and forbids bulk scraping, so this framework:
 .agents/skills/linkedin-search/    # LinkedIn via Google Jobs (SerpApi)
 tools/tracker.ts                   # Application tracker CLI
 applications/                      # Your application status board (git-ignored)
-resume/                            # LaTeX resume template (US/ATS, 1 page)
-cover_letters/                     # LaTeX cover letter template (1 page)
-documents/                         # Drop your source CV/portfolio/refs here
+resume/                            # LaTeX resume template (US/ATS, 1 page); resume_<slug>.tex outputs
+cover_letters/                     # cover.cls + Lato/Raleway fonts; cover_<slug>.tex outputs (1 page)
+company_research/                  # Cached employer research, 30-day TTL (git-ignored)
+documents/                         # Your source resume/portfolio/refs + applications/<slug>/ archive
 job_scraper/                       # Cached search results
 upskill/                           # Generated skill-gap reports
 ```
