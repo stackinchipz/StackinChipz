@@ -38,3 +38,16 @@ bun.lockb
 
 # OS
 .DS_Store
+
+# Company research cache (regenerated, 30-day TTL)
+company_research/*.json
+
+# Per-application build artifacts in subfolders
+resume/**/*.pdf
+resume/**/*.aux
+resume/**/*.log
+resume/**/*.out
+cover_letters/**/*.pdf
+cover_letters/**/*.aux
+cover_letters/**/*.log
+cover_letters/**/*.out
