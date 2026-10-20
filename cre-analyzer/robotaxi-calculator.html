@@ -1,0 +1,625 @@
+<style>
+  :root {
+    /* light theme (deliberate cool neutrals, blue bias) */
+    --ground: #eaeef3;
+    --surface: #ffffff;
+    --surface-2: #f3f6fa;
+    --ink: #13202c;
+    --muted: #566676;
+    --line: #d8e0e9;
+    --accent: #0b8fca;      /* charge / power */
+    --accent-ink: #ffffff;
+    --copper: #b3701c;      /* landlord recapture */
+    --good: #1f9d55;        /* buy favored */
+    --bad: #d15436;         /* lease favored / cost */
+    --shadow: 0 1px 2px rgba(20,40,60,.06), 0 8px 24px rgba(20,40,60,.06);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground: #0c1118;
+      --surface: #141b25;
+      --surface-2: #1a2331;
+      --ink: #e7eef6;
+      --muted: #8898aa;
+      --line: #243244;
+      --accent: #38bdf8;
+      --accent-ink: #06131d;
+      --copper: #e0a24a;
+      --good: #3fb950;
+      --bad: #f0785a;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 10px 30px rgba(0,0,0,.35);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #0c1118; --surface: #141b25; --surface-2: #1a2331;
+    --ink: #e7eef6; --muted: #8898aa; --line: #243244;
+    --accent: #38bdf8; --accent-ink: #06131d; --copper: #e0a24a;
+    --good: #3fb950; --bad: #f0785a;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 10px 30px rgba(0,0,0,.35);
+    color-scheme: dark;
+  }
+  :root[data-theme="light"] {
+    --ground: #eaeef3; --surface: #ffffff; --surface-2: #f3f6fa;
+    --ink: #13202c; --muted: #566676; --line: #d8e0e9;
+    --accent: #0b8fca; --accent-ink: #ffffff; --copper: #b3701c;
+    --good: #1f9d55; --bad: #d15436;
+    --shadow: 0 1px 2px rgba(20,40,60,.06), 0 8px 24px rgba(20,40,60,.06);
+    color-scheme: light;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .mono {
+    font-family: ui-monospace, "SF Mono", "JetBrains Mono", "Roboto Mono", Menlo, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 28px 20px 72px; }
+
+  header.top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .brand { display: flex; gap: 14px; align-items: center; }
+  .bolt {
+    width: 42px; height: 42px; flex: none; border-radius: 10px;
+    background: linear-gradient(150deg, var(--accent), color-mix(in srgb, var(--accent) 55%, var(--copper)));
+    display: grid; place-items: center; color: var(--accent-ink); font-size: 22px;
+    box-shadow: var(--shadow);
+  }
+  h1 { font-size: clamp(1.25rem, 1rem + 1.4vw, 1.7rem); margin: 0; letter-spacing: -.01em; text-wrap: balance; }
+  .sub { margin: 2px 0 0; color: var(--muted); font-size: .92rem; max-width: 62ch; }
+  .eyebrow { text-transform: uppercase; letter-spacing: .12em; font-size: .66rem; color: var(--accent); font-weight: 700; }
+
+  .toolbar { display: flex; gap: 8px; align-items: center; }
+  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 9px; overflow: hidden; background: var(--surface); }
+  .seg button {
+    font: inherit; font-size: .8rem; border: 0; background: transparent; color: var(--muted);
+    padding: 7px 12px; cursor: pointer;
+  }
+  .seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); font-weight: 600; }
+  .icon-btn {
+    font: inherit; border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+    width: 38px; height: 36px; border-radius: 9px; cursor: pointer; font-size: 1rem;
+  }
+  button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* Verdict */
+  .verdict {
+    margin-top: 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+    padding: 20px 22px; box-shadow: var(--shadow); display: grid; gap: 12px;
+    grid-template-columns: auto 1fr; align-items: center;
+  }
+  .pill {
+    font-weight: 800; letter-spacing: .04em; font-size: 1.05rem; padding: 12px 20px; border-radius: 12px;
+    color: #fff; white-space: nowrap; text-align: center; min-width: 128px;
+  }
+  .pill small { display: block; font-weight: 600; font-size: .62rem; letter-spacing: .14em; opacity: .85; text-transform: uppercase; }
+  .verdict .say { font-size: .98rem; }
+  .verdict .say b { color: var(--ink); }
+  .break { color: var(--muted); font-size: .86rem; margin-top: 4px; }
+  .break b { color: var(--copper); }
+
+  /* KPI readouts */
+  .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 14px; }
+  .kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; box-shadow: var(--shadow); }
+  .kpi .k-label { font-size: .7rem; text-transform: uppercase; letter-spacing: .09em; color: var(--muted); }
+  .kpi .k-val { font-size: 1.5rem; font-weight: 700; margin-top: 4px; letter-spacing: -.01em; }
+  .kpi .k-note { font-size: .74rem; color: var(--muted); margin-top: 2px; }
+
+  main { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 18px; margin-top: 18px; align-items: start; }
+  .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); }
+  .panel > h2 { font-size: .82rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin: 0; padding: 15px 18px 0; }
+
+  .controls { padding: 6px 18px 18px; }
+  .grp { margin-top: 16px; }
+  .grp .g-title { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+  .grp .g-title::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+  .ctl { margin: 12px 0; }
+  .ctl .row { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .ctl label { font-size: .84rem; }
+  .ctl .rv { font-size: .84rem; font-weight: 700; color: var(--ink); }
+  input[type="range"] {
+    -webkit-appearance: none; appearance: none; width: 100%; height: 4px; margin-top: 8px;
+    background: var(--line); border-radius: 3px; cursor: pointer;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 17px; height: 17px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--surface); box-shadow: 0 1px 4px rgba(0,0,0,.3);
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 17px; height: 17px; border-radius: 50%; background: var(--accent); border: 2px solid var(--surface);
+  }
+  .check { display: flex; align-items: center; gap: 9px; margin: 14px 0 2px; font-size: .84rem; cursor: pointer; }
+  .check input { width: 16px; height: 16px; accent-color: var(--accent); }
+
+  .viz { display: grid; gap: 18px; }
+  .card-pad { padding: 15px 18px 18px; }
+  .chart-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .legend { display: flex; gap: 14px; font-size: .74rem; color: var(--muted); flex-wrap: wrap; }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .swatch { width: 12px; height: 3px; border-radius: 2px; display: inline-block; }
+  .swatch.fill { height: 11px; width: 11px; border-radius: 3px; opacity: .55; }
+  canvas { width: 100%; height: auto; display: block; margin-top: 10px; }
+
+  table.heat { border-collapse: collapse; width: 100%; margin-top: 10px; font-size: .8rem; }
+  table.heat th, table.heat td { border: 1px solid var(--line); padding: 8px 6px; text-align: center; }
+  table.heat thead th { background: var(--surface-2); color: var(--muted); font-weight: 600; font-size: .72rem; }
+  table.heat tbody th { color: var(--muted); }
+  table.heat td { color: #10202c; font-weight: 600; }
+  .heat-cap { font-size: .72rem; color: var(--muted); margin-top: 8px; }
+
+  footer { color: var(--muted); font-size: .74rem; text-align: center; margin-top: 30px; line-height: 1.6; }
+
+  @media (max-width: 860px) {
+    main { grid-template-columns: 1fr; }
+    .kpis { grid-template-columns: 1fr; }
+    .verdict { grid-template-columns: 1fr; text-align: left; }
+    .pill { justify-self: start; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .kpi .k-val, .pill { transition: color .2s ease, background .2s ease; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <div class="bolt" aria-hidden="true">⚡</div>
+      <div>
+        <div class="eyebrow">Robotaxi charging depot</div>
+        <h1>Lease vs. Buy — with landlord power-recapture</h1>
+        <p class="sub">You bring the megawatts. If you lease, the landlord can re-rate your rent at renewal to the higher value <em>your</em> power created. This models exactly how much that holdup lowers the threshold to buy.</p>
+      </div>
+    </div>
+    <div class="toolbar">
+      <div class="seg" role="group" aria-label="Scenario preset">
+        <button id="scDefault" aria-pressed="true">Realistic</button>
+        <button id="scPivot" aria-pressed="false">Recapture pivot</button>
+      </div>
+      <button class="icon-btn" id="themeBtn" title="Toggle light / dark" aria-label="Toggle theme">◐</button>
+    </div>
+  </header>
+
+  <section class="verdict">
+    <div class="pill" id="pill">—</div>
+    <div>
+      <div class="say" id="say">—</div>
+      <div class="break" id="break">—</div>
+    </div>
+  </section>
+
+  <section class="kpis">
+    <div class="kpi"><div class="k-label">Buy — NPV of cost</div><div class="k-val mono" id="kBuy">—</div><div class="k-note">equity + closing + power, debt service, net of sale</div></div>
+    <div class="kpi"><div class="k-label">Lease — NPV of cost</div><div class="k-val mono" id="kLease">—</div><div class="k-note">power capex + rent (incl. renewal re-rate)</div></div>
+    <div class="kpi"><div class="k-label">Advantage of buying</div><div class="k-val mono" id="kAdv">—</div><div class="k-note">lease cost − buy cost · positive favors buying</div></div>
+  </section>
+
+  <main>
+    <aside class="panel controls" aria-label="Assumptions">
+      <h2>Assumptions</h2>
+
+      <div class="grp">
+        <div class="g-title">Power upgrade</div>
+        <div class="ctl" data-fmt="mw"><div class="row"><label for="mw">Power capacity</label><span class="rv" id="mw_v"></span></div><input type="range" id="mw" min="1" max="20" step="0.5"></div>
+        <div class="ctl" data-fmt="usd"><div class="row"><label for="capexPerMw">Installed cost / MW</label><span class="rv" id="capexPerMw_v"></span></div><input type="range" id="capexPerMw" min="400000" max="3000000" step="50000"></div>
+        <div class="ctl" data-fmt="sf"><div class="row"><label for="uplift">HBU rent uplift / SF·MW</label><span class="rv" id="uplift_v"></span></div><input type="range" id="uplift" min="0.1" max="2" step="0.05"></div>
+      </div>
+
+      <div class="grp">
+        <div class="g-title">Lease renewal (the holdup)</div>
+        <div class="ctl" data-fmt="pct"><div class="row"><label for="capture">Landlord recapture at renewal</label><span class="rv" id="capture_v"></span></div><input type="range" id="capture" min="0" max="1" step="0.05"></div>
+        <div class="ctl" data-fmt="pct"><div class="row"><label for="renewalCap">Cap on renewal rent jump</label><span class="rv" id="renewalCap_v"></span></div><input type="range" id="renewalCap" min="0.05" max="1" step="0.05"></div>
+        <div class="ctl" data-fmt="yr"><div class="row"><label for="initTerm">Initial term</label><span class="rv" id="initTerm_v"></span></div><input type="range" id="initTerm" min="3" max="15" step="1"></div>
+        <div class="ctl" data-fmt="yr"><div class="row"><label for="renewTerm">Renewal term</label><span class="rv" id="renewTerm_v"></span></div><input type="range" id="renewTerm" min="3" max="15" step="1"></div>
+        <label class="check"><input type="checkbox" id="fixedRenewal"> Fixed-rate renewal option (blocks recapture)</label>
+      </div>
+
+      <div class="grp">
+        <div class="g-title">Deal &amp; finance</div>
+        <div class="ctl" data-fmt="sf"><div class="row"><label for="baseRent">Base industrial rent / SF</label><span class="rv" id="baseRent_v"></span></div><input type="range" id="baseRent" min="4" max="24" step="0.5"></div>
+        <div class="ctl" data-fmt="pct"><div class="row"><label for="entryCap">Entry cap rate</label><span class="rv" id="entryCap_v"></span></div><input type="range" id="entryCap" min="0.04" max="0.10" step="0.0025"></div>
+        <div class="ctl" data-fmt="pct"><div class="row"><label for="exitPrem">Exit cap premium</label><span class="rv" id="exitPrem_v"></span></div><input type="range" id="exitPrem" min="0" max="0.04" step="0.0025"></div>
+        <div class="ctl" data-fmt="yr"><div class="row"><label for="hold">Holding period</label><span class="rv" id="hold_v"></span></div><input type="range" id="hold" min="5" max="25" step="1"></div>
+        <div class="ctl" data-fmt="pct"><div class="row"><label for="disc">Discount rate (WACC)</label><span class="rv" id="disc_v"></span></div><input type="range" id="disc" min="0.04" max="0.14" step="0.005"></div>
+        <div class="ctl" data-fmt="pct"><div class="row"><label for="ltv">Loan-to-value</label><span class="rv" id="ltv_v"></span></div><input type="range" id="ltv" min="0.4" max="0.8" step="0.05"></div>
+        <div class="ctl" data-fmt="pct"><div class="row"><label for="rate">Mortgage rate</label><span class="rv" id="rate_v"></span></div><input type="range" id="rate" min="0.04" max="0.12" step="0.0025"></div>
+        <div class="ctl" data-fmt="ksf"><div class="row"><label for="pad">Pad rentable area</label><span class="rv" id="pad_v"></span></div><input type="range" id="pad" min="10000" max="120000" step="5000"></div>
+      </div>
+    </aside>
+
+    <section class="viz">
+      <div class="panel">
+        <div class="card-pad">
+          <div class="chart-head">
+            <div>
+              <h2 style="padding:0">Lease rent trajectory</h2>
+              <div class="heat-cap" style="margin-top:2px">The shaded band is rent the landlord recaptures from the power you installed.</div>
+            </div>
+            <div class="legend">
+              <span><i class="swatch" style="background:var(--accent)"></i> Rent you pay</span>
+              <span><i class="swatch" style="background:var(--muted)"></i> Market-only rent</span>
+              <span><i class="swatch fill" style="background:var(--copper)"></i> Recaptured</span>
+            </div>
+          </div>
+          <canvas id="chart" width="720" height="300" role="img" aria-label="Lease rent per square foot by year, showing the renewal re-rate"></canvas>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="card-pad">
+          <h2 style="padding:0">Sensitivity — NPV advantage of buying</h2>
+          <div class="heat-cap">Rows = landlord recapture · columns = exit cap rate. Green = buying wins, red = leasing wins.</div>
+          <div style="overflow-x:auto"><table class="heat" id="heat"></table></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Estimates only — not investment, tax, or legal advice. The model treats base operating costs as a wash under NNN and isolates the two forces that differ: capturing your power value at exit (buy) vs. paying re-rated rent on it (lease).<br>
+    Built with Claude Code · mirrors the tested <span class="mono">cre-analyzer robotaxi</span> engine.
+  </footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  // ---- math (mirrors src/engine/robotaxi.ts) ----
+  function mortgagePayment(P, r, n) {
+    if (P <= 0) return 0;
+    if (r <= 0) return P / n;
+    const f = Math.pow(1 + r, n);
+    return P * r * f / (f - 1);
+  }
+  function loanBalance(P, r, amortN, throughY) {
+    const pay = mortgagePayment(P, r, amortN);
+    let bal = P;
+    for (let y = 1; y <= throughY; y++) {
+      const interest = bal * r;
+      let prin = pay - interest;
+      if (prin > bal) prin = bal;
+      bal -= prin;
+      if (bal < 0) bal = 0;
+    }
+    return bal;
+  }
+  function npv(rate, flows) {
+    let a = 0;
+    for (let t = 0; t < flows.length; t++) a += flows[t] / Math.pow(1 + rate, t);
+    return a;
+  }
+  const grow = (base, rate, years) => base * Math.pow(1 + rate, years);
+  const upliftPerSf = (p) => p.upliftPerSfPerMw * p.mw;
+  const powerCapex = (p) => p.mw * p.capexPerMw;
+  const basePrice = (p) => (p.baseRent * p.pad) / p.entryCap;
+
+  function renewalYears(p) {
+    const out = [];
+    let y = p.initTerm + 1;
+    while (y <= p.hold) { out.push(y); y += p.renewTerm; }
+    return out;
+  }
+
+  function leaseRent(p, captureOverride) {
+    const cap = captureOverride == null ? p.capture : captureOverride;
+    const renew = new Set(renewalYears(p));
+    const sched = [];
+    let rent = p.baseRent;
+    for (let year = 1; year <= p.hold; year++) {
+      if (year === 1) {
+        rent = p.baseRent;
+      } else if (renew.has(year)) {
+        const marketBase = grow(p.baseRent, p.rentGrowth, year - 1);
+        const uplift = grow(upliftPerSf(p), p.rentGrowth, year - 1);
+        if (p.fixedRenewal) {
+          rent = rent * (1 + p.rentGrowth);
+        } else {
+          const target = marketBase + cap * uplift;
+          const capped = rent * (1 + p.renewalCap);
+          rent = Math.min(target, capped);
+          rent = Math.max(rent, marketBase);
+        }
+      } else {
+        rent = rent * (1 + p.rentGrowth);
+      }
+      sched.push(rent);
+    }
+    return sched;
+  }
+
+  function computeNpvs(p, captureOverride) {
+    const N = p.hold;
+    const price = basePrice(p);
+    const power = powerCapex(p);
+    const loan = price * p.ltv;
+    const equity = price - loan;
+    const closing = price * p.closingPct;
+    const ds = mortgagePayment(loan, p.rate, p.amort);
+
+    // Buy path
+    const buy = [equity + closing + power];
+    let terminalValue = 0, netSale = 0;
+    for (let year = 1; year <= N; year++) {
+      let cost = ds;
+      if (year === N) {
+        const baseNext = grow(p.baseRent, p.rentGrowth, N);
+        const upNext = grow(upliftPerSf(p), p.rentGrowth, N);
+        const terminalNoi = (baseNext + upNext) * p.pad;
+        const exitCap = p.entryCap + p.exitPrem;
+        terminalValue = terminalNoi / exitCap;
+        const selling = terminalValue * p.sellingPct;
+        const payoff = loanBalance(loan, p.rate, p.amort, N);
+        netSale = terminalValue - selling - payoff;
+        cost = cost - netSale;
+      }
+      buy.push(cost);
+    }
+    const buyNpv = npv(p.disc, buy);
+
+    // Lease path
+    const rent = leaseRent(p, captureOverride);
+    const lease = [power + p.leaseUpfrontPerSf * p.pad];
+    for (let year = 1; year <= N; year++) {
+      let cost = rent[year - 1] * p.pad;
+      if (year === N) cost -= p.removableFrac * power * p.residualPct;
+      lease.push(cost);
+    }
+    const leaseNpv = npv(p.disc, lease);
+
+    return { buyNpv, leaseNpv, rent, price, power, equity, closing, ds, terminalValue, netSale };
+  }
+
+  function breakEvenCapture(p) {
+    const adv = (c) => { const n = computeNpvs(p, c); return n.leaseNpv - n.buyNpv; };
+    if (adv(0) >= 0) return 0;
+    if (adv(1) < 0) return null;
+    let lo = 0, hi = 1;
+    for (let i = 0; i < 80; i++) {
+      const mid = (lo + hi) / 2;
+      const f = adv(mid);
+      if (Math.abs(f) < 1) return mid;
+      if (f < 0) lo = mid; else hi = mid;
+    }
+    return (lo + hi) / 2;
+  }
+
+  // ---- formatting ----
+  const usd = (n) => (n < 0 ? "-$" : "$") + Math.round(Math.abs(n)).toLocaleString("en-US");
+  const usdC = (n) => {
+    const a = Math.abs(n), s = n < 0 ? "-$" : "$";
+    if (a >= 1e6) return s + (a / 1e6).toFixed(2) + "M";
+    if (a >= 1e3) return s + Math.round(a / 1e3) + "k";
+    return s + Math.round(a);
+  };
+  const pct = (n) => (n * 100).toFixed(n * 100 % 1 === 0 ? 0 : 1) + "%";
+
+  // ---- state ----
+  const PRESETS = {
+    default: {
+      pad: 40000, baseRent: 10, entryCap: 0.07, exitPrem: 0.005,
+      mw: 5, capexPerMw: 1200000, upliftPerSfPerMw: 0.9,
+      removableFrac: 0.35, residualPct: 0.3,
+      capture: 0.6, initTerm: 5, renewTerm: 5, renewalCap: 0.15, fixedRenewal: false,
+      leaseUpfrontPerSf: 1.5, hold: 10, disc: 0.08, ltv: 0.65, rate: 0.07,
+      amort: 25, closingPct: 0.025, sellingPct: 0.05, rentGrowth: 0.03
+    },
+    pivot: {
+      pad: 40000, baseRent: 10, entryCap: 0.07, exitPrem: 0.03,
+      mw: 5, capexPerMw: 1200000, upliftPerSfPerMw: 0.9,
+      removableFrac: 0.35, residualPct: 0.3,
+      capture: 0.6, initTerm: 5, renewTerm: 5, renewalCap: 1.0, fixedRenewal: false,
+      leaseUpfrontPerSf: 1.5, hold: 15, disc: 0.105, ltv: 0.55, rate: 0.085,
+      amort: 25, closingPct: 0.025, sellingPct: 0.06, rentGrowth: 0.02
+    }
+  };
+  let p = Object.assign({}, PRESETS.default);
+
+  const SLIDERS = [
+    ["mw", "mw"], ["capexPerMw", "capexPerMw"], ["uplift", "upliftPerSfPerMw"],
+    ["capture", "capture"], ["renewalCap", "renewalCap"], ["initTerm", "initTerm"], ["renewTerm", "renewTerm"],
+    ["baseRent", "baseRent"], ["entryCap", "entryCap"], ["exitPrem", "exitPrem"],
+    ["hold", "hold"], ["disc", "disc"], ["ltv", "ltv"], ["rate", "rate"], ["pad", "pad"]
+  ];
+  const FMT = {
+    mw: (v) => v + " MW", usd: (v) => usdC(v), sf: (v) => "$" + v.toFixed(2),
+    pct: (v) => pct(v), yr: (v) => v + " yr", ksf: (v) => (v / 1000) + "k SF"
+  };
+
+  function syncInputsFromState() {
+    SLIDERS.forEach(([id, key]) => {
+      const el = document.getElementById(id);
+      if (el) el.value = p[key];
+    });
+    document.getElementById("fixedRenewal").checked = !!p.fixedRenewal;
+  }
+
+  function readStateFromInputs() {
+    SLIDERS.forEach(([id, key]) => {
+      const el = document.getElementById(id);
+      if (el) p[key] = Number(el.value);
+    });
+    p.fixedRenewal = document.getElementById("fixedRenewal").checked;
+  }
+
+  function updateReadouts() {
+    document.querySelectorAll(".ctl").forEach((ctl) => {
+      const input = ctl.querySelector("input[type=range]");
+      if (!input) return;
+      const out = ctl.querySelector(".rv");
+      const fmt = FMT[ctl.getAttribute("data-fmt")] || ((v) => v);
+      out.textContent = fmt(Number(input.value));
+    });
+  }
+
+  function render() {
+    const n = computeNpvs(p);
+    const adv = n.leaseNpv - n.buyNpv;
+    const be = breakEvenCapture(p);
+    const denom = Math.max(Math.abs(n.leaseNpv), 1);
+    const advPct = adv / denom;
+    let rec, color;
+    if (advPct > 0.02) { rec = "BUY"; color = "var(--good)"; }
+    else if (advPct < -0.02) { rec = "LEASE"; color = "var(--bad)"; }
+    else { rec = "TOSS-UP"; color = "var(--copper)"; }
+
+    const pill = document.getElementById("pill");
+    pill.style.background = color;
+    pill.innerHTML = "<small>Recommendation</small>" + rec;
+
+    document.getElementById("kBuy").textContent = usd(n.buyNpv);
+    document.getElementById("kLease").textContent = usd(n.leaseNpv);
+    const kAdv = document.getElementById("kAdv");
+    kAdv.textContent = (adv >= 0 ? "+" : "") + usd(adv);
+    kAdv.style.color = adv >= 0 ? "var(--good)" : "var(--bad)";
+
+    document.getElementById("say").innerHTML =
+      "Buying " + (adv >= 0 ? "saves " : "costs ") + "<b>" + usd(Math.abs(adv)) +
+      "</b> in NPV vs. leasing, on " + p.mw + " MW of power (" + usd(n.power) + " capex).";
+
+    const beEl = document.getElementById("break");
+    if (be === null) {
+      beEl.innerHTML = "Even at <b>100% recapture</b>, leasing stays cheaper here — the lease terms protect you.";
+    } else if (be === 0) {
+      beEl.innerHTML = "Buying wins <b>even at 0% recapture</b> — keeping the power value at exit already decides it.";
+    } else {
+      beEl.innerHTML = "Break-even: buying wins once the landlord recaptures <b>≥ " + pct(be) + "</b> of your power uplift.";
+    }
+
+    drawChart(n.rent, leaseRent(p, 0), be);
+    drawHeat();
+  }
+
+  // ---- chart ----
+  function cssVar(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+
+  function drawChart(actual, market, be) {
+    const canvas = document.getElementById("chart");
+    const cssW = canvas.clientWidth || 720;
+    const cssH = 300;
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = cssW * dpr; canvas.height = cssH * dpr;
+    const ctx = canvas.getContext("2d");
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, cssW, cssH);
+
+    const padL = 46, padR = 14, padT = 14, padB = 26;
+    const w = cssW - padL - padR, h = cssH - padT - padB;
+    const N = actual.length;
+    const maxR = Math.max.apply(null, actual.concat(market)) * 1.12;
+    const minR = 0;
+    const x = (i) => padL + (N === 1 ? w / 2 : (i / (N - 1)) * w);
+    const y = (v) => padT + h - ((v - minR) / (maxR - minR)) * h;
+
+    const line = cssVar("--line"), muted = cssVar("--muted"),
+          accent = cssVar("--accent"), copper = cssVar("--copper"), ink = cssVar("--ink");
+
+    // grid + y labels
+    ctx.strokeStyle = line; ctx.fillStyle = muted;
+    ctx.font = "11px ui-monospace, monospace"; ctx.textAlign = "right"; ctx.textBaseline = "middle";
+    for (let g = 0; g <= 4; g++) {
+      const val = minR + (maxR - minR) * (g / 4);
+      const yy = y(val);
+      ctx.globalAlpha = .5; ctx.beginPath(); ctx.moveTo(padL, yy); ctx.lineTo(padL + w, yy); ctx.stroke(); ctx.globalAlpha = 1;
+      ctx.fillText("$" + val.toFixed(0), padL - 8, yy);
+    }
+    // x labels (years)
+    ctx.textAlign = "center"; ctx.textBaseline = "top";
+    const step = N > 12 ? 2 : 1;
+    for (let i = 0; i < N; i += step) ctx.fillText(String(i + 1), x(i), padT + h + 7);
+
+    // shaded recapture band (between market and actual)
+    ctx.beginPath();
+    ctx.moveTo(x(0), y(actual[0]));
+    for (let i = 1; i < N; i++) ctx.lineTo(x(i), y(actual[i]));
+    for (let i = N - 1; i >= 0; i--) ctx.lineTo(x(i), y(market[i]));
+    ctx.closePath();
+    ctx.fillStyle = copper; ctx.globalAlpha = .28; ctx.fill(); ctx.globalAlpha = 1;
+
+    // market line
+    ctx.strokeStyle = muted; ctx.lineWidth = 1.5; ctx.setLineDash([4, 4]);
+    ctx.beginPath(); actual.forEach((_, i) => { const xi = x(i), yi = y(market[i]); i ? ctx.lineTo(xi, yi) : ctx.moveTo(xi, yi); }); ctx.stroke();
+    ctx.setLineDash([]);
+
+    // actual line
+    ctx.strokeStyle = accent; ctx.lineWidth = 2.5;
+    ctx.beginPath(); actual.forEach((v, i) => { const xi = x(i), yi = y(v); i ? ctx.lineTo(xi, yi) : ctx.moveTo(xi, yi); }); ctx.stroke();
+
+    // renewal markers
+    const renew = new Set(renewalYears(p));
+    ctx.fillStyle = accent;
+    actual.forEach((v, i) => {
+      if (renew.has(i + 1)) {
+        ctx.beginPath(); ctx.arc(x(i), y(v), 4.5, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = ink; ctx.font = "10px ui-monospace, monospace"; ctx.textAlign = "center"; ctx.textBaseline = "bottom";
+        ctx.fillText("renewal", x(i), y(v) - 8);
+        ctx.fillStyle = accent;
+      }
+    });
+  }
+
+  // ---- heatmap ----
+  function drawHeat() {
+    const captures = [0, 0.25, 0.5, 0.75, 1];
+    const exits = [p.entryCap, p.entryCap + 0.005, p.entryCap + 0.01, p.entryCap + 0.02];
+    let vals = [];
+    const cells = captures.map((c) =>
+      exits.map((ec) => {
+        const n = computeNpvs(Object.assign({}, p, { exitPrem: ec - p.entryCap }), c);
+        const v = n.leaseNpv - n.buyNpv; vals.push(v); return v;
+      })
+    );
+    const maxA = Math.max.apply(null, vals.map(Math.abs)) || 1;
+    const color = (v) => {
+      const t = Math.min(1, Math.abs(v) / maxA);
+      if (v >= 0) return "rgba(31,157,85," + (0.12 + 0.6 * t) + ")";
+      return "rgba(209,84,54," + (0.12 + 0.6 * t) + ")";
+    };
+    let html = "<thead><tr><th>Recapture ↓ / Exit cap →</th>";
+    exits.forEach((ec) => html += "<th>" + pct(ec) + "</th>");
+    html += "</tr></thead><tbody>";
+    captures.forEach((c, ri) => {
+      html += "<tr><th>" + pct(c) + "</th>";
+      cells[ri].forEach((v) => html += '<td style="background:' + color(v) + '">' + usdC(v) + "</td>");
+      html += "</tr>";
+    });
+    html += "</tbody>";
+    document.getElementById("heat").innerHTML = html;
+  }
+
+  // ---- wiring ----
+  function onInput() { readStateFromInputs(); updateReadouts(); render(); }
+
+  function loadPreset(name) {
+    p = Object.assign({}, PRESETS[name]);
+    syncInputsFromState(); updateReadouts(); render();
+    document.getElementById("scDefault").setAttribute("aria-pressed", String(name === "default"));
+    document.getElementById("scPivot").setAttribute("aria-pressed", String(name === "pivot"));
+  }
+
+  SLIDERS.forEach(([id]) => document.getElementById(id).addEventListener("input", onInput));
+  document.getElementById("fixedRenewal").addEventListener("change", onInput);
+  document.getElementById("scDefault").addEventListener("click", () => loadPreset("default"));
+  document.getElementById("scPivot").addEventListener("click", () => loadPreset("pivot"));
+
+  document.getElementById("themeBtn").addEventListener("click", () => {
+    const root = document.documentElement;
+    const cur = root.getAttribute("data-theme")
+      || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    root.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
+    render();
+  });
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", render);
+  window.addEventListener("resize", () => render());
+
+  syncInputsFromState();
+  updateReadouts();
+  render();
+})();
+</script>
