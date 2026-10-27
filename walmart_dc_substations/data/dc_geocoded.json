@@ -1,0 +1,962 @@
+{
+ "3100 i-27|plainview|tx|": {
+  "lat": 34.18479,
+  "lon": -101.70684,
+  "precision": "city_centroid",
+  "note": "city centroid (Plainview, TX; GeoNames 5528450)"
+ },
+ "3900 n ih 35|new braunfels|tx|": {
+  "lat": 29.703,
+  "lon": -98.12445,
+  "precision": "city_centroid",
+  "note": "city centroid (New Braunfels, TX; GeoNames 4714131)"
+ },
+ "14863 fm 645|palestine|tx|": {
+  "lat": 31.76212,
+  "lon": -95.63079,
+  "precision": "city_centroid",
+  "note": "city centroid (Palestine, TX; GeoNames 4717232)"
+ },
+ "201 old elkhart rd|palestine|tx|": {
+  "lat": 31.76212,
+  "lon": -95.63079,
+  "precision": "city_centroid",
+  "note": "city centroid (Palestine, TX; GeoNames 4717232)"
+ },
+ "2120 n stemmons fwy|sanger|tx|": {
+  "lat": 33.3563,
+  "lon": -97.1814,
+  "precision": "city_centroid",
+  "note": "city centroid via ZIP 76266 (Sanger, TX)"
+ },
+ "9605 nw hk dodgen loop|temple|tx|": {
+  "lat": 31.09823,
+  "lon": -97.34278,
+  "precision": "city_centroid",
+  "note": "city centroid (Temple, TX; GeoNames 4735966)"
+ },
+ "591 apache trail|terrell|tx|": {
+  "lat": 32.73596,
+  "lon": -96.27526,
+  "precision": "city_centroid",
+  "note": "city centroid (Terrell, TX; GeoNames 4736028)"
+ },
+ "3470 windmill rd|cleburne|tx|76033": {
+  "lat": 32.3509,
+  "lon": -97.4103,
+  "precision": "zip_centroid",
+  "note": "ZIP 76033 centroid (Cleburne, TX)"
+ },
+ "20131 met rd|new caney|tx|": {
+  "lat": 30.15522,
+  "lon": -95.21132,
+  "precision": "city_centroid",
+  "note": "city centroid (New Caney, TX; GeoNames 4714149)"
+ },
+ "3162 brast rd|sealy|tx|": {
+  "lat": 29.7826,
+  "lon": -96.1592,
+  "precision": "city_centroid",
+  "note": "city centroid via ZIP 77474 (Sealy, TX)"
+ },
+ "2500 belt line road|lancaster|tx|": {
+  "lat": 32.59208,
+  "lon": -96.75611,
+  "precision": "city_centroid",
+  "note": "city centroid (Lancaster, TX; GeoNames 4705191)"
+ },
+ "1515 w wintergreen rd|lancaster|tx|": {
+  "lat": 32.59208,
+  "lon": -96.75611,
+  "precision": "city_centroid",
+  "note": "city centroid (Lancaster, TX; GeoNames 4705191)"
+ },
+ "940 east pleasant run road|lancaster|tx|": {
+  "lat": 32.59208,
+  "lon": -96.75611,
+  "precision": "city_centroid",
+  "note": "city centroid (Lancaster, TX; GeoNames 4705191)"
+ },
+ "4554 oscar nelson jr dr|baytown|tx|": {
+  "lat": 29.7355,
+  "lon": -94.97743,
+  "precision": "city_centroid",
+  "note": "city centroid (Baytown, TX; GeoNames 4672731)"
+ },
+ "4633 borusan road|baytown|tx|": {
+  "lat": 29.7355,
+  "lon": -94.97743,
+  "precision": "city_centroid",
+  "note": "city centroid (Baytown, TX; GeoNames 4672731)"
+ },
+ "10300 sanden drive|dallas|tx|": {
+  "lat": 32.78306,
+  "lon": -96.80667,
+  "precision": "city_centroid",
+  "note": "city centroid (Dallas, TX; GeoNames 4684888)"
+ },
+ "15101 n beach st|fort worth|tx|76177": {
+  "lat": 32.9448,
+  "lon": -97.3124,
+  "precision": "zip_centroid",
+  "note": "ZIP 76177 centroid (Fort Worth, TX)"
+ },
+ "5300 westport parkway|fort worth|tx|": {
+  "lat": 32.72541,
+  "lon": -97.32085,
+  "precision": "city_centroid",
+  "note": "city centroid (Fort Worth, TX; GeoNames 4691930)"
+ },
+ "market place drive|katy|tx|": {
+  "lat": 29.78579,
+  "lon": -95.8244,
+  "precision": "city_centroid",
+  "note": "city centroid (Katy, TX; GeoNames 4702732)"
+ },
+ "|lewisville|tx|": {
+  "lat": 33.04623,
+  "lon": -96.99417,
+  "precision": "city_centroid",
+  "note": "city centroid (Lewisville, TX; GeoNames 4706057)"
+ },
+ "11303 antoine dr|houston|tx|77066": {
+  "lat": 29.961,
+  "lon": -95.4947,
+  "precision": "zip_centroid",
+  "note": "ZIP 77066 centroid (Houston, TX)"
+ },
+ "1401 baker hwy w|douglas|ga|": {
+  "lat": 31.4973,
+  "lon": -82.8465,
+  "precision": "city_centroid",
+  "note": "city centroid via ZIP 31533 (Douglas, GA)"
+ },
+ "655 unisia dr|monroe|ga|30655": {
+  "lat": 33.7883,
+  "lon": -83.7013,
+  "precision": "zip_centroid",
+  "note": "ZIP 30655 centroid (Monroe, GA)"
+ },
+ "299 a.j. riggs rd|statesboro|ga|30458": {
+  "lat": 32.4408,
+  "lon": -81.774,
+  "precision": "zip_centroid",
+  "note": "ZIP 30458 centroid (Statesboro, GA)"
+ },
+ "3101 n. highway 27|carrollton|ga|": {
+  "lat": 33.58011,
+  "lon": -85.07661,
+  "precision": "city_centroid",
+  "note": "city centroid (Carrollton, GA; GeoNames 4186416)"
+ },
+ "117 valentine industrial pkwy|pendergrass|ga|": {
+  "lat": 34.1796,
+  "lon": -83.6634,
+  "precision": "city_centroid",
+  "note": "city centroid via ZIP 30567 (Pendergrass, GA)"
+ },
+ "6055 s. fulton pkwy|union city|ga|": {
+  "lat": 33.58706,
+  "lon": -84.54243,
+  "precision": "city_centroid",
+  "note": "city centroid (Union City, GA; GeoNames 4227777)"
+ },
+ "1000 douglas hill road|lithia springs|ga|30122": {
+  "lat": 33.7655,
+  "lon": -84.6469,
+  "precision": "zip_centroid",
+  "note": "ZIP 30122 centroid (Lithia Springs, GA)"
+ },
+ "|carnesville|ga|": {
+  "lat": 34.3631,
+  "lon": -83.2547,
+  "precision": "city_centroid",
+  "note": "city centroid via ZIP 30521 (Carnesville, GA)"
+ },
+ "6785 sw enterprise blvd|arcadia|fl|34266": {
+  "lat": 27.1861,
+  "lon": -81.8667,
+  "precision": "zip_centroid",
+  "note": "ZIP 34266 centroid (Arcadia, FL)"
+ },
+ "4224 kettering rd|brooksville|fl|34602": {
+  "lat": 28.5093,
+  "lon": -82.2957,
+  "precision": "zip_centroid",
+  "note": "ZIP 34602 centroid (Brooksville, FL)"
+ },
+ "18815 nw 115 ave|alachua|fl|": {
+  "lat": 29.8135,
+  "lon": -82.472,
+  "precision": "city_centroid",
+  "note": "city centroid via ZIP 32615 (Alachua, FL)"
+ },
+ "5600 state road 544|winter haven|fl|33881": {
+  "lat": 28.0452,
+  "lon": -81.7325,
+  "precision": "zip_centroid",
+  "note": "ZIP 33881 centroid (Winter Haven, FL)"
+ },
+ "2686 commerce rd|macclenny|fl|32063": {
+  "lat": 30.2737,
+  "lon": -82.1325,
+  "precision": "zip_centroid",
+  "note": "ZIP 32063 centroid (Macclenny, FL)"
+ },
+ "5100 n ridge trail|davenport|fl|33897": {
+  "lat": 28.3112,
+  "lon": -81.6643,
+  "precision": "zip_centroid",
+  "note": "ZIP 33897 centroid (Davenport, FL)"
+ },
+ "4900 north ridge trail|davenport|fl|33897": {
+  "lat": 28.3112,
+  "lon": -81.6643,
+  "precision": "zip_centroid",
+  "note": "ZIP 33897 centroid (Davenport, FL)"
+ },
+ "1511 zoo parkway|jacksonville|fl|": {
+  "lat": 30.33218,
+  "lon": -81.65565,
+  "precision": "city_centroid",
+  "note": "city centroid (Jacksonville, FL; GeoNames 4160021)"
+ },
+ "5801 sw regional airport blvd|bentonville|ar|72712": {
+  "lat": 36.3577,
+  "lon": -94.2224,
+  "precision": "zip_centroid",
+  "note": "ZIP 72712 centroid (Bentonville, AR)"
+ },
+ "5800 sw regional airport road|bentonville|ar|": {
+  "lat": 36.37285,
+  "lon": -94.20882,
+  "precision": "city_centroid",
+  "note": "city centroid (Bentonville, AR; GeoNames 4101260)"
+ },
+ "406 s walton blvd|bentonville|ar|": {
+  "lat": 36.37285,
+  "lon": -94.20882,
+  "precision": "city_centroid",
+  "note": "city centroid (Bentonville, AR; GeoNames 4101260)"
+ },
+ "3301 e park and blass ave|searcy|ar|72143": {
+  "lat": 35.2436,
+  "lon": -91.7317,
+  "precision": "zip_centroid",
+  "note": "ZIP 72143 centroid (Searcy, AR)"
+ },
+ "2400 yankee rd|searcy|ar|72143": {
+  "lat": 35.2436,
+  "lon": -91.7317,
+  "precision": "zip_centroid",
+  "note": "ZIP 72143 centroid (Searcy, AR)"
+ },
+ "2103 s main st|searcy|ar|": {
+  "lat": 35.25064,
+  "lon": -91.73625,
+  "precision": "city_centroid",
+  "note": "city centroid (Searcy, AR; GeoNames 4130430)"
+ },
+ "3300 sterlin hurley ind hwy|clarksville|ar|": {
+  "lat": 35.4908,
+  "lon": -93.4911,
+  "precision": "city_centroid",
+  "note": "city centroid via ZIP 72830 (Clarksville, AR)"
+ },
+ "2250 n 8th st ste 102-a|rogers|ar|": {
+  "lat": 36.33202,
+  "lon": -94.11854,
+  "precision": "city_centroid",
+  "note": "city centroid (Rogers, AR; GeoNames 4128894)"
+ },
+ "|fort smith|ar|": {
+  "lat": 35.38592,
+  "lon": -94.39855,
+  "precision": "city_centroid",
+  "note": "city centroid (Fort Smith, AR; GeoNames 4111410)"
+ },
+ "|bentonville|ar|": {
+  "lat": 36.37285,
+  "lon": -94.20882,
+  "precision": "city_centroid",
+  "note": "city centroid (Bentonville, AR; GeoNames 4101260)"
+ },
+ "2200 7th ave sw|cullman|al|35055": {
+  "lat": 34.1761,
+  "lon": -86.8298,
+  "precision": "zip_centroid",
+  "note": "ZIP 35055 centroid (Cullman, AL)"
+ },
+ "1005 sara g lott blvd|brundidge|al|": {
+  "lat": 31.7013,
+  "lon": -85.8177,
+  "precision": "city_centroid",
+  "note": "city centroid via ZIP 36010 (Brundidge, AL)"
+ },
+ "2200 manufacturers blvd ne|brookhaven|ms|39601": {
+  "lat": 31.5858,
+  "lon": -90.452,
+  "precision": "zip_centroid",
+  "note": "ZIP 39601 centroid (Brookhaven, MS)"
+ },
+ "300 walmart dr|new albany|ms|": {
+  "lat": 34.4851,
+  "lon": -89.0031,
+  "precision": "city_centroid",
+  "note": "city centroid via ZIP 38652 (New Albany, MS)"
+ },
+ "10480 marina dr|olive branch|ms|": {
+  "lat": 34.96176,
+  "lon": -89.82953,
+  "precision": "city_centroid",
+  "note": "city centroid (Olive Branch, MS; GeoNames 4439869)"
+ },
+ "3160 highway 743|opelousas|la|70570": {
+  "lat": 30.5144,
+  "lon": -92.0897,
+  "precision": "zip_centroid",
+  "note": "ZIP 70570 centroid (Opelousas, LA)"
+ },
+ "45346 parkway blvd|robert|la|70455": {
+  "lat": 30.5063,
+  "lon": -90.3352,
+  "precision": "zip_centroid",
+  "note": "ZIP 70455 centroid (Robert, LA)"
+ },
+ "200 walmart dr|shelby|nc|28150": {
+  "lat": 35.312,
+  "lon": -81.5568,
+  "precision": "zip_centroid",
+  "note": "ZIP 28150 centroid (Shelby, NC)"
+ },
+ "1020 walmart dr|hope mills|nc|28348": {
+  "lat": 34.9536,
+  "lon": -78.9354,
+  "precision": "zip_centroid",
+  "note": "ZIP 28348 centroid (Hope Mills, NC)"
+ },
+ "453 martin creek rd|henderson|nc|": {
+  "lat": 36.32959,
+  "lon": -78.39916,
+  "precision": "city_centroid",
+  "note": "city centroid (Henderson, NC; GeoNames 4470566)"
+ },
+ "2837 senator ralph scott parkway|mebane|nc|": {
+  "lat": 36.0979,
+  "lon": -79.2719,
+  "precision": "city_centroid",
+  "note": "city centroid via ZIP 27302 (Mebane, NC)"
+ },
+ "1050 vern cora rd|laurens|sc|29360": {
+  "lat": 34.499,
+  "lon": -82.0143,
+  "precision": "zip_centroid",
+  "note": "ZIP 29360 centroid (Laurens, SC)"
+ },
+ "160 state rd s-13-682|pageland|sc|": {
+  "lat": 34.7722,
+  "lon": -80.3966,
+  "precision": "city_centroid",
+  "note": "city centroid via ZIP 29728 (Pageland, SC)"
+ },
+ "ridgeville industrial campus (i-26)|ridgeville|sc|": {
+  "lat": 33.108,
+  "lon": -80.3086,
+  "precision": "city_centroid",
+  "note": "city centroid via ZIP 29472 (Ridgeville, SC)"
+ },
+ "|wellford|sc|": {
+  "lat": 34.9514,
+  "lon": -82.0927,
+  "precision": "city_centroid",
+  "note": "city centroid via ZIP 29385 (Wellford, SC)"
+ },
+ "9305 pocahontas trail|williamsburg|va|": {
+  "lat": 37.2707,
+  "lon": -76.70746,
+  "precision": "city_centroid",
+  "note": "city centroid (Williamsburg, VA; GeoNames 4793846)"
+ },
+ "21500 cox rd|sutherland|va|23885": {
+  "lat": 37.1901,
+  "lon": -77.5655,
+  "precision": "zip_centroid",
+  "note": "ZIP 23885 centroid (Sutherland, VA)"
+ },
+ "10695 james madison hwy|gordonsville|va|": {
+  "lat": 38.1759,
+  "lon": -78.1815,
+  "precision": "city_centroid",
+  "note": "city centroid via ZIP 22942 (Gordonsville, VA)"
+ },
+ "|mount crawford|va|": {
+  "lat": 38.3457,
+  "lon": -78.8957,
+  "precision": "city_centroid",
+  "note": "city centroid via ZIP 22841 (Mount Crawford, VA)"
+ },
+ "285 frank martin rd|shelbyville|tn|37160": {
+  "lat": 35.4863,
+  "lon": -86.4624,
+  "precision": "zip_centroid",
+  "note": "ZIP 37160 centroid (Shelbyville, TN)"
+ },
+ "1015 hixson blvd|lebanon|tn|": {
+  "lat": 36.20811,
+  "lon": -86.2911,
+  "precision": "city_centroid",
+  "note": "city centroid (Lebanon, TN; GeoNames 4636045)"
+ },
+ "690 crenshaw blvd|hopkinsville|ky|42240": {
+  "lat": 36.8621,
+  "lon": -87.4851,
+  "precision": "zip_centroid",
+  "note": "ZIP 42240 centroid (Hopkinsville, KY)"
+ },
+ "3701 west hal rogers parkway|london|ky|40741": {
+  "lat": 37.1549,
+  "lon": -84.0961,
+  "precision": "zip_centroid",
+  "note": "ZIP 40741 centroid (London, KY)"
+ },
+ "397319 west 3000 road|ochelata|ok|74051": {
+  "lat": 36.5947,
+  "lon": -95.9691,
+  "precision": "zip_centroid",
+  "note": "ZIP 74051 centroid (Ochelata, OK)"
+ },
+ "20634 s. indian meridian rd|pauls valley|ok|73075": {
+  "lat": 34.7385,
+  "lon": -97.2195,
+  "precision": "zip_centroid",
+  "note": "ZIP 73075 centroid (Pauls Valley, OK)"
+ },
+ "210 owens rd|woodland|pa|16881": {
+  "lat": 41.0098,
+  "lon": -78.3214,
+  "precision": "zip_centroid",
+  "note": "ZIP 16881 centroid (Woodland, PA)"
+ },
+ "181 walmart rd|bedford|pa|15522": {
+  "lat": 39.9908,
+  "lon": -78.5261,
+  "precision": "zip_centroid",
+  "note": "ZIP 15522 centroid (Bedford, PA)"
+ },
+ "300 enterprise way|tobyhanna|pa|18466": {
+  "lat": 41.1836,
+  "lon": -75.3918,
+  "precision": "zip_centroid",
+  "note": "ZIP 18466 centroid (Tobyhanna, PA)"
+ },
+ "390 highridge park rd|pottsville|pa|17901": {
+  "lat": 40.684,
+  "lon": -76.2123,
+  "precision": "zip_centroid",
+  "note": "ZIP 17901 centroid (Pottsville, PA)"
+ },
+ "1915 ebberts spring court|greencastle|pa|": {
+  "lat": 39.7818,
+  "lon": -77.747,
+  "precision": "city_centroid",
+  "note": "city centroid via ZIP 17225 (Greencastle, PA)"
+ },
+ "1625 heilmandale road|lebanon|pa|": {
+  "lat": 40.34093,
+  "lon": -76.41135,
+  "precision": "city_centroid",
+  "note": "city centroid (Lebanon, PA; GeoNames 5197517)"
+ },
+ "2785 commerce center blvd|bethlehem|pa|": {
+  "lat": 40.62593,
+  "lon": -75.37046,
+  "precision": "city_centroid",
+  "note": "city centroid (Bethlehem, PA; GeoNames 5180225)"
+ },
+ "3801 e us hwy 50|olney|il|": {
+  "lat": 38.7334,
+  "lon": -88.0809,
+  "precision": "city_centroid",
+  "note": "city centroid via ZIP 62450 (Olney, IL)"
+ },
+ "3100 il hwy 89|spring valley|il|": {
+  "lat": 41.3279,
+  "lon": -89.2042,
+  "precision": "city_centroid",
+  "note": "city centroid via ZIP 61362 (Spring Valley, IL)"
+ },
+ "23769 mathew rd|sterling|il|": {
+  "lat": 41.78864,
+  "lon": -89.69622,
+  "precision": "city_centroid",
+  "note": "city centroid (Sterling, IL; GeoNames 4912499)"
+ },
+ "3501 s brandon rd|joliet|il|": {
+  "lat": 41.52519,
+  "lon": -88.0834,
+  "precision": "city_centroid",
+  "note": "city centroid (Joliet, IL; GeoNames 4898015)"
+ },
+ "|belvidere|il|": {
+  "lat": 42.26391,
+  "lon": -88.84427,
+  "precision": "city_centroid",
+  "note": "city centroid (Belvidere, IL; GeoNames 4884453)"
+ },
+ "|manteno|il|": {
+  "lat": 41.2514,
+  "lon": -87.8468,
+  "precision": "city_centroid",
+  "note": "city centroid via ZIP 60950 (Manteno, IL)"
+ },
+ "|elwood|il|": {
+  "lat": 41.426,
+  "lon": -88.0864,
+  "precision": "city_centroid",
+  "note": "city centroid via ZIP 60421 (Elwood, IL)"
+ },
+ "|matteson|il|": {
+  "lat": 41.50392,
+  "lon": -87.7131,
+  "precision": "city_centroid",
+  "note": "city centroid (Matteson, IL; GeoNames 4901445)"
+ },
+ "2106 e tipton st|seymour|in|47274": {
+  "lat": 38.9571,
+  "lon": -85.8825,
+  "precision": "zip_centroid",
+  "note": "ZIP 47274 centroid (Seymour, IN)"
+ },
+ "1700 e main st|gas city|in|46933": {
+  "lat": 40.4879,
+  "lon": -85.6055,
+  "precision": "zip_centroid",
+  "note": "ZIP 46933 centroid (Gas City, IN)"
+ },
+ "9590 allpoints parkway|plainfield|in|46168": {
+  "lat": 39.6893,
+  "lon": -86.3919,
+  "precision": "zip_centroid",
+  "note": "ZIP 46168 centroid (Plainfield, IN)"
+ },
+ "9360 allpoints parkway|plainfield|in|46168": {
+  "lat": 39.6893,
+  "lon": -86.3919,
+  "precision": "zip_centroid",
+  "note": "ZIP 46168 centroid (Plainfield, IN)"
+ },
+ "5259 w 500 n|mccordsville|in|46055": {
+  "lat": 39.9081,
+  "lon": -85.9228,
+  "precision": "zip_centroid",
+  "note": "ZIP 46055 centroid (Mccordsville, IN)"
+ },
+ "10059 n 600 w|mccordsville|in|46055": {
+  "lat": 39.9081,
+  "lon": -85.9228,
+  "precision": "zip_centroid",
+  "note": "ZIP 46055 centroid (Mccordsville, IN)"
+ },
+ "6719 w 350 north|greenfield|in|46140": {
+  "lat": 39.7902,
+  "lon": -85.8141,
+  "precision": "zip_centroid",
+  "note": "ZIP 46140 centroid (Greenfield, IN)"
+ },
+ "|auburn|in|46706": {
+  "lat": 41.359,
+  "lon": -85.0468,
+  "precision": "zip_centroid",
+  "note": "ZIP 46706 centroid (Auburn, IN)"
+ },
+ "1400 old chillicothe rd se|washington court house|oh|43160": {
+  "lat": 39.537,
+  "lon": -83.455,
+  "precision": "zip_centroid",
+  "note": "ZIP 43160 centroid (Washington Court House, OH)"
+ },
+ "3880 southwest blvd|grove city|oh|": {
+  "lat": 39.88145,
+  "lon": -83.09296,
+  "precision": "city_centroid",
+  "note": "city centroid (Grove City, OH; GeoNames 4513409)"
+ },
+ "100 commerce park dr|wintersville|oh|43953": {
+  "lat": 40.3524,
+  "lon": -80.6781,
+  "precision": "zip_centroid",
+  "note": "ZIP 43953 centroid (Steubenville, OH)"
+ },
+ "650 gateway blvd|monroe|oh|45050": {
+  "lat": 39.4413,
+  "lon": -84.3652,
+  "precision": "zip_centroid",
+  "note": "ZIP 45050 centroid (Monroe, OH)"
+ },
+ "5330 crosswind dr|columbus|oh|": {
+  "lat": 39.96118,
+  "lon": -82.99879,
+  "precision": "city_centroid",
+  "note": "city centroid (Columbus, OH; GeoNames 4509177)"
+ },
+ "2829 rohr rd|groveport|oh|": {
+  "lat": 39.8581,
+  "lon": -82.8872,
+  "precision": "city_centroid",
+  "note": "city centroid via ZIP 43125 (Groveport, OH)"
+ },
+ "|lebanon|oh|": {
+  "lat": 39.43534,
+  "lon": -84.20299,
+  "precision": "city_centroid",
+  "note": "city centroid (Lebanon, OH; GeoNames 4516412)"
+ },
+ "|turtlecreek township (warren county)|oh|": {
+  "lat": null,
+  "lon": null,
+  "precision": "none",
+  "note": "could not geocode offline"
+ },
+ "1100 matlock dr|st. james|mo|65559": {
+  "lat": 38.0056,
+  "lon": -91.6076,
+  "precision": "zip_centroid",
+  "note": "ZIP 65559 centroid (Saint James, MO)"
+ },
+ "5100 s brookhart dr|harrisonville|mo|64701": {
+  "lat": 38.6419,
+  "lon": -94.3285,
+  "precision": "zip_centroid",
+  "note": "ZIP 64701 centroid (Harrisonville, MO)"
+ },
+ "1309 hwy 24 east|moberly|mo|65270": {
+  "lat": 39.4202,
+  "lon": -92.4358,
+  "precision": "zip_centroid",
+  "note": "ZIP 65270 centroid (Moberly, MO)"
+ },
+ "3220 nevada terrace|ottawa|ks|66067": {
+  "lat": 38.6142,
+  "lon": -95.2745,
+  "precision": "zip_centroid",
+  "note": "ZIP 66067 centroid (Ottawa, KS)"
+ },
+ "1303 sw innovation pkwy|topeka|ks|": {
+  "lat": 39.04833,
+  "lon": -95.67804,
+  "precision": "city_centroid",
+  "note": "city centroid (Topeka, KS; GeoNames 4280539)"
+ },
+ "30801 w 191st st|edgerton|ks|66021": {
+  "lat": 38.7811,
+  "lon": -95.0094,
+  "precision": "zip_centroid",
+  "note": "ZIP 66021 centroid (Edgerton, KS)"
+ },
+ "8827 old river rd|marcy|ny|13403": {
+  "lat": 43.1639,
+  "lon": -75.2783,
+  "precision": "zip_centroid",
+  "note": "ZIP 13403 centroid (Marcy, NY)"
+ },
+ "300 enterprise road|johnstown|ny|12095": {
+  "lat": 43.0069,
+  "lon": -74.3715,
+  "precision": "zip_centroid",
+  "note": "ZIP 12095 centroid (Johnstown, NY)"
+ },
+ "180 high st|sharon springs|ny|": {
+  "lat": 42.7634,
+  "lon": -74.5919,
+  "precision": "city_centroid",
+  "note": "city centroid via ZIP 13459 (Sharon Springs, NY)"
+ },
+ "6100 3m drive|menomonie|wi|54751": {
+  "lat": 44.8718,
+  "lon": -91.9265,
+  "precision": "zip_centroid",
+  "note": "ZIP 54751 centroid (Menomonie, WI)"
+ },
+ "525 industrial ave|tomah|wi|": {
+  "lat": 43.9838,
+  "lon": -90.4733,
+  "precision": "city_centroid",
+  "note": "city centroid via ZIP 54660 (Tomah, WI)"
+ },
+ "115 distribution way|beaver dam|wi|53916": {
+  "lat": 43.4616,
+  "lon": -88.8407,
+  "precision": "zip_centroid",
+  "note": "ZIP 53916 centroid (Beaver Dam, WI)"
+ },
+ "101 sohler dr|mankato|mn|56001": {
+  "lat": 44.1538,
+  "lon": -93.996,
+  "precision": "zip_centroid",
+  "note": "ZIP 56001 centroid (Mankato, MN)"
+ },
+ "500 jonesville rd|coldwater|mi|49036": {
+  "lat": 41.9255,
+  "lon": -85.0057,
+  "precision": "zip_centroid",
+  "note": "ZIP 49036 centroid (Coldwater, MI)"
+ },
+ "1505 e mapleleaf dr|mount pleasant|ia|52641": {
+  "lat": 40.9646,
+  "lon": -91.5614,
+  "precision": "zip_centroid",
+  "note": "ZIP 52641 centroid (Mount Pleasant, IA)"
+ },
+ "4880 wheatleys pond rd|smyrna|de|": {
+  "lat": 39.2934,
+  "lon": -75.6008,
+  "precision": "city_centroid",
+  "note": "city centroid via ZIP 19977 (Smyrna, DE)"
+ },
+ "11121 elliott pl|williamsport|md|21795": {
+  "lat": 39.593,
+  "lon": -77.8087,
+  "precision": "zip_centroid",
+  "note": "ZIP 21795 centroid (Williamsport, MD)"
+ },
+ "42 freetown rd|raymond|nh|03077": {
+  "lat": 43.0325,
+  "lon": -71.1912,
+  "precision": "zip_centroid",
+  "note": "ZIP 03077 centroid (Raymond, NH)"
+ },
+ "31 alfred plourde parkway|lewiston|me|": {
+  "lat": 44.10035,
+  "lon": -70.21478,
+  "precision": "city_centroid",
+  "note": "city centroid (Lewiston, ME; GeoNames 4969398)"
+ },
+ "95 aubuchon drive|westminster|ma|": {
+  "lat": 42.5459,
+  "lon": -71.9106,
+  "precision": "city_centroid",
+  "note": "city centroid via ZIP 01441 (Westminster, MA)"
+ },
+ "1 tobias boland way|worcester|ma|": {
+  "lat": 42.26259,
+  "lon": -71.80229,
+  "precision": "city_centroid",
+  "note": "city centroid (Worcester, MA; GeoNames 4956184)"
+ },
+ "3001 e state farm rd|north platte|ne|69101": {
+  "lat": 41.1326,
+  "lon": -100.7746,
+  "precision": "zip_centroid",
+  "note": "ZIP 69101 centroid (North Platte, NE)"
+ },
+ "pointers auburn road|pilesgrove|nj|": {
+  "lat": null,
+  "lon": null,
+  "precision": "none",
+  "note": "could not geocode offline"
+ },
+ "2 gateway blvd|pedricktown|nj|": {
+  "lat": 39.7435,
+  "lon": -75.412,
+  "precision": "city_centroid",
+  "note": "city centroid via ZIP 08067 (Pedricktown, NJ)"
+ },
+ "|swedesboro|nj|": {
+  "lat": 39.7529,
+  "lon": -75.3362,
+  "precision": "city_centroid",
+  "note": "city centroid via ZIP 08085 (Swedesboro, NJ)"
+ },
+ "17550 johnson rd|apple valley|ca|92307": {
+  "lat": 34.5291,
+  "lon": -117.2132,
+  "precision": "zip_centroid",
+  "note": "ZIP 92307 centroid (Apple Valley, CA)"
+ },
+ "6720 kimball ave|chino|ca|91708": {
+  "lat": 33.954,
+  "lon": -117.6404,
+  "precision": "zip_centroid",
+  "note": "ZIP 91708 centroid (Chino, CA)"
+ },
+ "6750 kimball ave|chino|ca|91708": {
+  "lat": 33.954,
+  "lon": -117.6404,
+  "precision": "zip_centroid",
+  "note": "ZIP 91708 centroid (Chino, CA)"
+ },
+ "10800 state hwy 99w|red bluff|ca|96080": {
+  "lat": 40.1795,
+  "lon": -122.2383,
+  "precision": "zip_centroid",
+  "note": "ZIP 96080 centroid (Red Bluff, CA)"
+ },
+ "1005 s h st|porterville|ca|93257": {
+  "lat": 36.0686,
+  "lon": -119.0315,
+  "precision": "zip_centroid",
+  "note": "ZIP 93257 centroid (Porterville, CA)"
+ },
+ "building 4, 11900 riverside drive|jurupa valley|ca|91752": {
+  "lat": 33.9938,
+  "lon": -117.5236,
+  "precision": "zip_centroid",
+  "note": "ZIP 91752 centroid (Mira Loma, CA)"
+ },
+ "11850 riverside drive|jurupa valley|ca|": {
+  "lat": 33.99251,
+  "lon": -117.51644,
+  "precision": "city_centroid",
+  "note": "city centroid (Jurupa Valley, CA; GeoNames 5373492)"
+ },
+ "3485 wineville rd|jurupa valley|ca|": {
+  "lat": 33.99251,
+  "lon": -117.51644,
+  "precision": "city_centroid",
+  "note": "city centroid (Jurupa Valley, CA; GeoNames 5373492)"
+ },
+ "3510 e. francis street|ontario|ca|91761": {
+  "lat": 34.0316,
+  "lon": -117.6187,
+  "precision": "zip_centroid",
+  "note": "ZIP 91761 centroid (Ontario, CA)"
+ },
+ "7000 powerline rd|sacramento|ca|95837": {
+  "lat": 38.6817,
+  "lon": -121.603,
+  "precision": "zip_centroid",
+  "note": "ZIP 95837 centroid (Sacramento, CA)"
+ },
+ "22722 harley knox blvd|perris|ca|92571": {
+  "lat": 33.811,
+  "lon": -117.218,
+  "precision": "zip_centroid",
+  "note": "ZIP 92571 centroid (Perris, CA)"
+ },
+ "1600 agua mansa rd|colton|ca|92324": {
+  "lat": 34.0315,
+  "lon": -117.2874,
+  "precision": "zip_centroid",
+  "note": "ZIP 92324 centroid (Colton, CA)"
+ },
+ "5150 e. mariposa road|stockton|ca|": {
+  "lat": 37.9577,
+  "lon": -121.29078,
+  "precision": "city_centroid",
+  "note": "city centroid (Stockton, CA; GeoNames 5399020)"
+ },
+ "4250 hamner ave|eastvale|ca|91752": {
+  "lat": 33.9938,
+  "lon": -117.5236,
+  "precision": "zip_centroid",
+  "note": "ZIP 91752 centroid (Mira Loma, CA)"
+ },
+ "2701 s. driver rd|shafter|ca|": {
+  "lat": 35.50051,
+  "lon": -119.27178,
+  "precision": "city_centroid",
+  "note": "city centroid (Shafter, CA; GeoNames 5394842)"
+ },
+ "1001 columbia ave|riverside|ca|92507": {
+  "lat": 33.9761,
+  "lon": -117.3389,
+  "precision": "zip_centroid",
+  "note": "ZIP 92507 centroid (Riverside, CA)"
+ },
+ "23702 w southern ave|buckeye|az|85326": {
+  "lat": 33.3703,
+  "lon": -112.5838,
+  "precision": "zip_centroid",
+  "note": "ZIP 85326 centroid (Buckeye, AZ)"
+ },
+ "868 w. peters rd|casa grande|az|85193": {
+  "lat": 32.8554,
+  "lon": -111.7973,
+  "precision": "zip_centroid",
+  "note": "ZIP 85193 centroid (Casa Grande, AZ)"
+ },
+ "luke field industrial park (litchfield rd / northern ave), glendale|glendale|az|": {
+  "lat": 33.53865,
+  "lon": -112.18599,
+  "precision": "city_centroid",
+  "note": "city centroid (Glendale, AZ; GeoNames 5295985)"
+ },
+ "2155 usa pkwy|sparks|nv|89437": {
+  "lat": 39.6269,
+  "lon": -119.7081,
+  "precision": "zip_centroid",
+  "note": "ZIP 89437 centroid (Sparks, NV)"
+ },
+ "235 e sydney dr|mccarran|nv|89434": {
+  "lat": 39.5502,
+  "lon": -119.7178,
+  "precision": "zip_centroid",
+  "note": "ZIP 89434 centroid (Sparks, NV)"
+ },
+ "555 vista blvd|sparks|nv|89434": {
+  "lat": 39.5502,
+  "lon": -119.7178,
+  "precision": "zip_centroid",
+  "note": "ZIP 89434 centroid (Sparks, NV)"
+ },
+ "929 n state rd 138|grantsville|ut|84029": {
+  "lat": 40.6005,
+  "lon": -112.4618,
+  "precision": "zip_centroid",
+  "note": "ZIP 84029 centroid (Grantsville, UT)"
+ },
+ "990 n 6550 w|salt lake city|ut|84116": {
+  "lat": 40.7857,
+  "lon": -111.9291,
+  "precision": "zip_centroid",
+  "note": "ZIP 84116 centroid (Salt Lake City, UT)"
+ },
+ "|hurricane|ut|": {
+  "lat": 37.17526,
+  "lon": -113.28995,
+  "precision": "city_centroid",
+  "note": "city centroid (Hurricane, UT; GeoNames 5540831)"
+ },
+ "7500 e crossroads blvd|loveland|co|80538": {
+  "lat": 40.4262,
+  "lon": -105.09,
+  "precision": "zip_centroid",
+  "note": "ZIP 80538 centroid (Loveland, CO)"
+ },
+ "porteos development south of denver international airport|aurora|co|": {
+  "lat": 39.72943,
+  "lon": -104.83192,
+  "precision": "city_centroid",
+  "note": "city centroid (Aurora, CO; GeoNames 5412347)"
+ },
+ "670 los morros rd nw|los lunas|nm|87031": {
+  "lat": 34.7806,
+  "lon": -106.7115,
+  "precision": "zip_centroid",
+  "note": "ZIP 87031 centroid (Los Lunas, NM)"
+ },
+ "426 logistics dr|cheyenne|wy|82009": {
+  "lat": 41.1836,
+  "lon": -104.8023,
+  "precision": "zip_centroid",
+  "note": "ZIP 82009 centroid (Cheyenne, WY)"
+ },
+ "546 woodall rd|grandview|wa|98930": {
+  "lat": 46.2538,
+  "lon": -119.9157,
+  "precision": "zip_centroid",
+  "note": "ZIP 98930 centroid (Grandview, WA)"
+ },
+ "3418 142nd ave e|sumner|wa|98390": {
+  "lat": 47.2099,
+  "lon": -122.228,
+  "precision": "zip_centroid",
+  "note": "ZIP 98390 centroid (Sumner, WA)"
+ },
+ "1455 se feedville rd|hermiston|or|97838": {
+  "lat": 45.845,
+  "lon": -119.2849,
+  "precision": "zip_centroid",
+  "note": "ZIP 97838 centroid (Hermiston, OR)"
+ }
+}

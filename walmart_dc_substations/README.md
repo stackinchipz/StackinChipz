@@ -43,3 +43,29 @@ See the "What HIFLD can't tell us" section of `out/walmart-dc-substations.md`.
 The biggest one: centroid geocoding means `sub_distance_km` is a neighbourhood
 screen, and `on_parcel_likely` is only TRUE where a cited utility release
 confirms a dedicated substation (Belvidere, IL).
+
+## Run of 2026-10-27
+
+| Item | Count |
+|------|------:|
+| Facilities in roster | 160 |
+| Rows with a HIFLD substation within 3 km of the geocoded point | 139 |
+| Rows with square footage / open year from a cited source | 60 / 48 |
+| Rows geocoded (ZIP centroid / city centroid / none) | 83 / 75 / 2 |
+
+Belvidere, IL ranks first (score 10) on the cited ComEd 138 kV dedicated
+substation. Everything else scores on the strongest HIFLD substation within
+3 km of its centroid, so the rest of the table is a grid-strength screen, not
+a parcel-level finding.
+
+Follow-ups that would sharpen this materially:
+
+1. Allow `nominatim.openstreetmap.org` or `geocoding.geo.census.gov` in the
+   environment's network settings and rerun: rows with street addresses get
+   address-level coordinates and the full <0.4 / <0.8 km tiers switch on.
+2. Allow `www.mwpvl.com` and `www.spscommerce.com` to replace the search-derived
+   roster with the full tables (square footage and open years are the gap).
+3. Utility releases for the other 2022+ builds (Lancaster TX, Wellford SC,
+   Stockton CA, Pilesgrove NJ, Carnesville GA, Greencastle PA, McCordsville IN)
+   can be added to `data/known_dedicated_subs.csv` with their source URLs; the
+   search budget ran out before those checks could run.

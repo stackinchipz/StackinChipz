@@ -39,8 +39,8 @@ def haversine_km(lat1, lon1, lat2, lon2):
 
 
 def voltage_weight(kv):
-    if kv is None:
-        return 0
+    if kv is None:  # voltage not available in HIFLD: floor weight, flagged in notes
+        return 1
     if kv >= 345:
         return 5
     if kv >= 230:
@@ -110,6 +110,18 @@ def geocode(row, cache):
         except Exception as e:  # pragma: no cover
             note = f"city lookup failed: {e}"
     if lat is None:
+        try:
+            import zipcodes
+            city = re.sub(r"\s*\(.*?\)", "", row["city"]).strip()
+            zs = [z for z in zipcodes.filter_by(city=city.title(), state=row["state"].strip().upper()) if z.get("lat")]
+            if zs:
+                zs.sort(key=lambda z: z["zip_code"])
+                lat, lon = float(zs[0]["lat"]), float(zs[0]["long"])
+                precision = "city_centroid"
+                note = f"city centroid via ZIP {zs[0]['zip_code']} ({city}, {row['state']})"
+        except Exception as e:  # pragma: no cover
+            note = f"city-zip lookup failed: {e}"
+    if lat is None:
         precision = "none"
         note = "could not geocode offline"
     cache[key] = {"lat": lat, "lon": lon, "precision": precision, "note": note}
@@ -126,7 +138,7 @@ def main():
             except ValueError:
                 continue
             kv = to_int(r["max_kv"])
-            if kv is not None and kv < 0:
+            if kv is not None and (kv < 0 or kv >= 9999):  # HIFLD sentinels -999999 / 999999
                 kv = None
             r["_lat"], r["_lon"], r["_kv"] = lat, lon, kv
             subs.append(r)
@@ -177,6 +189,7 @@ def main():
             new_build_bonus = 1 if (open_year and open_year >= 2022) else 0
 
             k = known.get((dc["city"].strip().lower(), dc["state"].strip().upper()))
+            best_name = best_kv = best_km = ""
             if nearest:
                 d, s = nearest
                 sub_name = s["name"] if (s["name"] and not s["name"].upper().startswith("UNKNOWN")) else f"(unnamed in HIFLD, id {s['hifld_id']})"
@@ -184,15 +197,28 @@ def main():
                 owner = "; ".join(retail.get(i, f"retail-territory id {i}") for i in s["retail_ids"].strip("|").split("|") if i) or "NOT IN HIFLD"
                 sub_dist = round(d, 2)
                 on_parcel = "TRUE" if (d < 0.4 and prec == "address") else ("UNVERIFIED" if d < 0.4 else "FALSE")
-                score = voltage_weight(sub_kv) * proximity_weight(d) + new_build_bonus
-                notes.append(f"HIFLD id {s['hifld_id']} ({s['type']}, {s['status']}); {len(within08)} sub(s) within 0.8 km, {len(within3)} within 3 km")
+                # Highest-voltage substation within 3 km (what the score uses under centroid precision)
+                bd, bs = max(within3, key=lambda t: ((t[1]["_kv"] or 0), -t[0]))
+                best_name = bs["name"] if (bs["name"] and not bs["name"].upper().startswith("UNKNOWN")) else f"(unnamed in HIFLD, id {bs['hifld_id']})"
+                best_kv, best_km = ("" if bs["_kv"] is None else bs["_kv"]), round(bd, 2)
+                if prec == "address":
+                    score = voltage_weight(sub_kv) * proximity_weight(d) + new_build_bonus
+                else:
+                    # Centroid geocodes cannot support the <0.4 / <0.8 km tiers: proximity weight is
+                    # capped at 1 ("within 3 km") and the voltage weight comes from the strongest
+                    # substation within 3 km, not the one nearest to the centroid.
+                    score = voltage_weight(bs["_kv"]) * 1 + new_build_bonus
+                notes.append(f"nearest HIFLD id {s['hifld_id']} ({s['type']}, {s['status']}); {len(within08)} sub(s) within 0.8 km, {len(within3)} within 3 km; "
+                             f"scored on strongest within 3 km: {best_name} {best_kv or 'kV n/a'} at {best_km} km")
                 if sub_kv is None:
-                    notes.append("HIFLD max voltage not available for nearest sub (voltage weight 0)")
+                    notes.append("HIFLD max voltage not available for nearest sub")
+                if bs["_kv"] is None:
+                    notes.append("strongest-sub voltage not available in HIFLD (voltage weight floored at 1)")
                 sub_source = "HIFLD"
             else:
                 sub_name, sub_kv, owner, sub_dist, on_parcel = "NONE", None, "NONE", None, "FALSE"
                 score = 0 + new_build_bonus
-                notes.append("no HIFLD substation within 3 km of geocoded point")
+                notes.append("no HIFLD substation within 3 km of geocoded point" if lat is not None else "not geocoded; substation match not attempted")
                 sub_source = "HIFLD"
             if k:
                 # press-confirmed dedicated substation that post-dates HIFLD vintage
@@ -212,6 +238,7 @@ def main():
                 "geocode_precision": prec,
                 "nearest_sub_name": sub_name, "sub_distance_km": "" if sub_dist is None else sub_dist,
                 "sub_max_kv": "" if sub_kv is None else sub_kv, "sub_owner": owner, "sub_source": sub_source,
+                "best_sub_within_3km": best_name, "best_sub_kv": best_kv, "best_sub_km": best_km,
                 "on_parcel_likely": on_parcel, "score": score, "notes": " | ".join(notes),
             })
     json.dump(cache, open(cache_path, "w"), indent=1)
@@ -219,27 +246,34 @@ def main():
     rows.sort(key=lambda r: (-r["score"], r["sub_distance_km"] if r["sub_distance_km"] != "" else 99, r["state"], r["city"]))
     os.makedirs(OUT, exist_ok=True)
     cols = ["dc_name", "address", "city", "state", "type", "sqft", "open_year", "lat", "lon", "geocode_precision",
-            "nearest_sub_name", "sub_distance_km", "sub_max_kv", "sub_owner", "sub_source", "on_parcel_likely", "score", "notes"]
+            "nearest_sub_name", "sub_distance_km", "sub_max_kv", "sub_owner", "sub_source",
+            "best_sub_within_3km", "best_sub_kv", "best_sub_km", "on_parcel_likely", "score", "notes"]
     with open(os.path.join(OUT, "walmart-dc-substations.csv"), "w", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=cols)
         w.writeheader()
         w.writerows(rows)
-    json.dump(rows, open(os.path.join(OUT, "ranked_rows.json"), "w"), indent=1)
     print(f"{len(rows)} DCs ranked; {sum(1 for r in rows if r['nearest_sub_name']!='NONE')} with a sub within 3 km")
     write_markdown(rows)
     return rows
 
 
 def write_markdown(rows):
-    top = rows[:25]
+    def is_closed(r):
+        return bool(re.search(r"\bclosed\b|\bclosing\b", r["dc_name"], re.I)) or bool(re.search(r"\b(closed|closing) (in|since|on|\(|as of|\d)|permanently closed|closure announced|will close|to close", r["notes"], re.I))
+    top = [r for r in rows if not is_closed(r)][:25]
     L = []
     L.append("# Walmart US distribution centers ranked by likely substation capacity (10–20 MW Megapod screen)\n")
     L.append("Generated by `scripts/build_ranking.py` from `data/dc_roster.csv` (search-cited roster), the HIFLD Electric "
              "Substations layer (public-domain DHS/ORNL vintage mirrored on GitHub; taps, risers and dead-ends removed), "
              "the HIFLD retail service-territory layer (utility names), and `data/known_dedicated_subs.csv` "
              "(press-confirmed dedicated substations newer than the HIFLD vintage).\n")
-    L.append("**Score** = voltage weight (345 kV+ = 5, 230 = 4, 115/138/161 = 3, 69 = 2, <69 = 1) × proximity weight "
-             "(<0.4 km = 3, <0.8 km = 2, <3 km = 1) + 1 if open year ≥ 2022. `NONE` means no HIFLD substation within 3 km.\n")
+    L.append("**Score** = voltage weight (345 kV+ = 5, 230 = 4, 115/138/161 = 3, 69 = 2, <69 = 1, not stated in HIFLD = 1) × "
+             "proximity weight (<0.4 km = 3, <0.8 km = 2, <3 km = 1) + 1 if open year ≥ 2022. `NONE` means no HIFLD "
+             "substation within 3 km. **Because every DC in this run is geocoded to a ZIP or city centroid, the <0.4 km and "
+             "<0.8 km tiers are not applied: the proximity weight is capped at 1 and the voltage weight is taken from the "
+             "strongest substation within 3 km of the centroid.** The script applies the full tiers automatically once a row "
+             "has address-level coordinates (`geocode_precision = address`). The only row scored on the full tiers is "
+             "Belvidere, IL, where a cited ComEd release confirms a dedicated 138 kV substation on the adjoining parcel.\n")
     L.append("**Read the geocode precision column before trusting any distance.** The environment could not reach Nominatim "
              "or the Census geocoder, so every DC is placed at its ZIP-code centroid (or city centroid when no ZIP was found). "
              "That is typically 1–5 km from the actual parcel, so distances are a neighbourhood screen, not a parcel "
@@ -247,11 +281,12 @@ def write_markdown(rows):
     n_sub = sum(1 for r in rows if r["nearest_sub_name"] != "NONE")
     L.append(f"Roster size: {len(rows)} facilities. {n_sub} have a HIFLD substation within 3 km of the geocoded point.\n")
     L.append("## Top 25 by score\n")
-    L.append("| # | DC | City, ST | Type | Sq ft | Open | Nearest substation | km | Max kV | Serving utility (HIFLD retail territory) | On parcel | Score |")
-    L.append("|--:|----|----------|------|------:|-----:|--------------------|---:|------:|------------------------------------------|-----------|------:|")
+    L.append("| # | DC | City, ST | Type | Sq ft | Open | Nearest substation | km | Max kV | Strongest sub within 3 km | kV | km | Serving utility (HIFLD retail territory) | Geocode | On parcel | Score |")
+    L.append("|--:|----|----------|------|------:|-----:|--------------------|---:|------:|---------------------------|---:|---:|------------------------------------------|---------|-----------|------:|")
     for i, r in enumerate(top, 1):
         L.append(f"| {i} | {r['dc_name']} | {r['city']}, {r['state']} | {r['type']} | {r['sqft'] or ''} | {r['open_year'] or ''} | "
-                 f"{r['nearest_sub_name']} | {r['sub_distance_km']} | {r['sub_max_kv']} | {r['sub_owner']} | {r['on_parcel_likely']} | {r['score']} |")
+                 f"{r['nearest_sub_name']} | {r['sub_distance_km']} | {r['sub_max_kv']} | {r['best_sub_within_3km']} | {r['best_sub_kv']} | {r['best_sub_km']} | "
+                 f"{r['sub_owner']} | {r['geocode_precision']} | {r['on_parcel_likely']} | {r['score']} |")
     L.append("")
     L.append("## What HIFLD can't tell us\n")
     L.append("- **Spare capacity.** HIFLD records location and voltage class only. It has no transformer MVA ratings, no "
@@ -289,7 +324,10 @@ def write_markdown(rows):
         elif r["nearest_sub_name"] == "NONE":
             q.append("No HIFLD substation within 3 km of the geocoded point: confirm the actual serving substation, its voltage, and the distance of its feeder run to the parcel.")
         else:
-            q.append(f"Is '{r['nearest_sub_name']}' ({r['sub_max_kv']} kV, ~{r['sub_distance_km']} km from the geocoded point) the substation that actually serves this DC, and is it on or adjoining the parcel?")
+            kv = f"{r['sub_max_kv']} kV" if r['sub_max_kv'] != "" else "voltage not in HIFLD"
+            q.append(f"Is '{r['nearest_sub_name']}' ({kv}, ~{r['sub_distance_km']} km from the geocoded point) the substation that actually serves this DC, and is it on or adjoining the parcel?")
+            if r['best_sub_within_3km'] and r['best_sub_within_3km'] != r['nearest_sub_name']:
+                q.append(f"The strongest substation within 3 km is '{r['best_sub_within_3km']}' ({r['best_sub_kv']} kV, ~{r['best_sub_km']} km): does the DC take service from it, and has the utility quoted available capacity there?")
         if r["sub_owner"] not in ("NONE", "NOT IN HIFLD") and ";" in r["sub_owner"]:
             q.append(f"Multiple retail territories overlap here ({r['sub_owner']}): which utility holds the DC account?")
         if r["open_year"] and str(r["open_year"]).isdigit() and int(r["open_year"]) >= 2022:
