@@ -1,9 +1,9 @@
 {
- "3100 i-27|plainview|tx|": {
-  "lat": 34.18479,
-  "lon": -101.70684,
-  "precision": "city_centroid",
-  "note": "city centroid (Plainview, TX; GeoNames 5528450)"
+ "3100 i-27|plainview|tx|79072": {
+  "lat": 34.1962,
+  "lon": -101.7259,
+  "precision": "zip_centroid",
+  "note": "ZIP 79072 centroid (Plainview, TX)"
  },
  "3900 n ih 35|new braunfels|tx|": {
   "lat": 29.703,
@@ -17,11 +17,11 @@
   "precision": "city_centroid",
   "note": "city centroid (Palestine, TX; GeoNames 4717232)"
  },
- "201 old elkhart rd|palestine|tx|": {
-  "lat": 31.76212,
-  "lon": -95.63079,
-  "precision": "city_centroid",
-  "note": "city centroid (Palestine, TX; GeoNames 4717232)"
+ "201 old elkhart rd|palestine|tx|75801": {
+  "lat": 31.7588,
+  "lon": -95.6342,
+  "precision": "zip_centroid",
+  "note": "ZIP 75801 centroid (Palestine, TX)"
  },
  "2120 n stemmons fwy|sanger|tx|": {
   "lat": 33.3563,
@@ -167,7 +167,7 @@
   "precision": "zip_centroid",
   "note": "ZIP 30122 centroid (Lithia Springs, GA)"
  },
- "|carnesville|ga|": {
+ "franklin 85 logistics center|carnesville|ga|": {
   "lat": 34.3631,
   "lon": -83.2547,
   "precision": "city_centroid",
@@ -503,11 +503,11 @@
   "precision": "city_centroid",
   "note": "city centroid (Belvidere, IL; GeoNames 4884453)"
  },
- "|manteno|il|": {
+ "8374 n 4000 e rd|manteno|il|60950": {
   "lat": 41.2514,
   "lon": -87.8468,
-  "precision": "city_centroid",
-  "note": "city centroid via ZIP 60950 (Manteno, IL)"
+  "precision": "zip_centroid",
+  "note": "ZIP 60950 centroid (Manteno, IL)"
  },
  "|elwood|il|": {
   "lat": 41.426,
@@ -515,7 +515,7 @@
   "precision": "city_centroid",
   "note": "city centroid via ZIP 60421 (Elwood, IL)"
  },
- "|matteson|il|": {
+ "21430 s cicero ave|matteson|il|": {
   "lat": 41.50392,
   "lon": -87.7131,
   "precision": "city_centroid",
@@ -599,11 +599,11 @@
   "precision": "city_centroid",
   "note": "city centroid (Columbus, OH; GeoNames 4509177)"
  },
- "2829 rohr rd|groveport|oh|": {
+ "2829 rohr rd|groveport|oh|43125": {
   "lat": 39.8581,
   "lon": -82.8872,
-  "precision": "city_centroid",
-  "note": "city centroid via ZIP 43125 (Groveport, OH)"
+  "precision": "zip_centroid",
+  "note": "ZIP 43125 centroid (Groveport, OH)"
  },
  "|lebanon|oh|": {
   "lat": 39.43534,
@@ -611,7 +611,7 @@
   "precision": "city_centroid",
   "note": "city centroid (Lebanon, OH; GeoNames 4516412)"
  },
- "|turtlecreek township (warren county)|oh|": {
+ "760 encore dr|turtlecreek township (warren county)|oh|": {
   "lat": null,
   "lon": null,
   "precision": "none",
@@ -665,11 +665,11 @@
   "precision": "zip_centroid",
   "note": "ZIP 12095 centroid (Johnstown, NY)"
  },
- "180 high st|sharon springs|ny|": {
+ "180 high st|sharon springs|ny|13459": {
   "lat": 42.7634,
   "lon": -74.5919,
-  "precision": "city_centroid",
-  "note": "city centroid via ZIP 13459 (Sharon Springs, NY)"
+  "precision": "zip_centroid",
+  "note": "ZIP 13459 centroid (Sharon Springs, NY)"
  },
  "6100 3m drive|menomonie|wi|54751": {
   "lat": 44.8718,
@@ -707,11 +707,11 @@
   "precision": "zip_centroid",
   "note": "ZIP 52641 centroid (Mount Pleasant, IA)"
  },
- "4880 wheatleys pond rd|smyrna|de|": {
+ "4880 wheatleys pond rd|smyrna|de|19977": {
   "lat": 39.2934,
   "lon": -75.6008,
-  "precision": "city_centroid",
-  "note": "city centroid via ZIP 19977 (Smyrna, DE)"
+  "precision": "zip_centroid",
+  "note": "ZIP 19977 centroid (Smyrna, DE)"
  },
  "11121 elliott pl|williamsport|md|21795": {
   "lat": 39.593,
@@ -749,11 +749,11 @@
   "precision": "zip_centroid",
   "note": "ZIP 69101 centroid (North Platte, NE)"
  },
- "pointers auburn road|pilesgrove|nj|": {
-  "lat": null,
-  "lon": null,
-  "precision": "none",
-  "note": "could not geocode offline"
+ "596 pointers auburn rd|pilesgrove|nj|08098": {
+  "lat": 39.6457,
+  "lon": -75.3248,
+  "precision": "zip_centroid",
+  "note": "ZIP 08098 centroid (Woodstown, NJ)"
  },
  "2 gateway blvd|pedricktown|nj|": {
   "lat": 39.7435,
@@ -761,7 +761,7 @@
   "precision": "city_centroid",
   "note": "city centroid via ZIP 08067 (Pedricktown, NJ)"
  },
- "|swedesboro|nj|": {
+ "200 birch creek rd|swedesboro|nj|": {
   "lat": 39.7529,
   "lon": -75.3362,
   "precision": "city_centroid",
@@ -911,11 +911,11 @@
   "precision": "zip_centroid",
   "note": "ZIP 84116 centroid (Salt Lake City, UT)"
  },
- "|hurricane|ut|": {
-  "lat": 37.17526,
-  "lon": -113.28995,
-  "precision": "city_centroid",
-  "note": "city centroid (Hurricane, UT; GeoNames 5540831)"
+ "150 n old highway 91|hurricane|ut|84737": {
+  "lat": 37.1454,
+  "lon": -113.3675,
+  "precision": "zip_centroid",
+  "note": "ZIP 84737 centroid (Hurricane, UT)"
  },
  "7500 e crossroads blvd|loveland|co|80538": {
   "lat": 40.4262,
@@ -958,5 +958,23 @@
   "lon": -119.2849,
   "precision": "zip_centroid",
   "note": "ZIP 97838 centroid (Hermiston, OR)"
+ },
+ "8725 county farm rd|irvington|al|36544": {
+  "lat": 30.4802,
+  "lon": -88.2396,
+  "precision": "zip_centroid",
+  "note": "ZIP 36544 centroid (Irvington, AL)"
+ },
+ "velocity 65 trade center, velocity way (i-65 cedar grove rd exit)|shepherdsville|ky|": {
+  "lat": 38.0045,
+  "lon": -85.6888,
+  "precision": "city_centroid",
+  "note": "city centroid via ZIP 40165 (Shepherdsville, KY)"
+ },
+ "andrews road|opelika|al|": {
+  "lat": 32.64541,
+  "lon": -85.37828,
+  "precision": "city_centroid",
+  "note": "city centroid (Opelika, AL; GeoNames 4081644)"
  }
 }

@@ -48,10 +48,10 @@ confirms a dedicated substation (Belvidere, IL).
 
 | Item | Count |
 |------|------:|
-| Facilities in roster | 160 |
-| Rows with a HIFLD substation within 3 km of the geocoded point | 139 |
-| Rows with square footage / open year from a cited source | 60 / 48 |
-| Rows geocoded (ZIP centroid / city centroid / none) | 83 / 75 / 2 |
+| Facilities in roster | 163 |
+| Rows with a HIFLD substation within 3 km of the geocoded point | 143 |
+| Rows with square footage / open year from a cited source | 83 / 60 |
+| Rows geocoded (ZIP centroid / city centroid / none) | 92 / 70 / 1 |
 
 Belvidere, IL ranks first (score 10) on the cited ComEd 138 kV dedicated
 substation. Everything else scores on the strongest HIFLD substation within
@@ -65,7 +65,15 @@ Follow-ups that would sharpen this materially:
    address-level coordinates and the full <0.4 / <0.8 km tiers switch on.
 2. Allow `www.mwpvl.com` and `www.spscommerce.com` to replace the search-derived
    roster with the full tables (square footage and open years are the gap).
-3. Utility releases for the other 2022+ builds (Lancaster TX, Wellford SC,
-   Stockton CA, Pilesgrove NJ, Carnesville GA, Greencastle PA, McCordsville IN)
-   can be added to `data/known_dedicated_subs.csv` with their source URLs; the
-   search budget ran out before those checks could run.
+3. Utility releases for the other 2022+ builds were checked on 2026-10-27
+   (`data/newbuild_power_checks.csv`): none of Lancaster TX, Wellford SC,
+   Stockton CA, Pilesgrove NJ, Carnesville GA, Greencastle PA or McCordsville IN
+   surfaced a substation release, so Belvidere IL remains the only row with a
+   press-confirmed dedicated substation. Utility interconnection filings or
+   local permit records would be the next place to look.
+
+Second-pass gap fill (2026-10-27, three agents, 94 searches): square footage
+rose from 60 to 83 rows and open year from 48 to 60; Irvington AL import DC,
+Shepherdsville KY FC and a low-confidence Opelika AL row were added. Several
+fills are flagged in `notes` as planned sizes, prior-tenant building sizes or
+single weak sources; read the note before quoting a number.
